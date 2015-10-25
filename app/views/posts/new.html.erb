@@ -1,3 +1,6 @@
+ <% if notice.present? %>
+<p id="notice" class="alert alert-success"><%= notice %></p>
+<% end %>
 <%- model_class = Post -%>
 <div class="page-header">
   <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1>
