@@ -25,7 +25,7 @@
         <td><%=l post.updated_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_post_path(post), :class => 'btn btn-xs btn-success' %>
+                      edit_post_path(post), :class => 'btn btn-xs btn-success' %> 
           <%= link_to t('.show', :default => t("helpers.links.show")),
                       post_path(post), :class => 'btn btn-xs btn-warning' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
