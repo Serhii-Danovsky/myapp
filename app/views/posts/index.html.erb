@@ -15,7 +15,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @posts.each do |post| %>
+    <% @posts.each_with_index do |post, index| %>
       <tr>
        
         <td><%= post.title %></td>
@@ -24,15 +24,21 @@
         <td><%=l post.created_at %></td>
         <td><%=l post.updated_at %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_post_path(post), :class => 'btn btn-xs btn-success' %> 
-          <%= link_to t('.show', :default => t("helpers.links.show")),
-                      post_path(post), :class => 'btn btn-xs btn-warning' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+
+  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo<%= index+1 %>">Actions</button>
+  <div id="demo<%= index+1 %>" class="collapse">
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_post_path(post), :class => 'btn btn-xs btn-success' %> <br>
+  <%= link_to t('.show', :default => t("helpers.links.show")),
+                      post_path(post), :class => 'btn btn-xs btn-warning' %><br>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       post_path(post),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
+  </div>
+</div>
+          
         </td>
       </tr>
     <% end %>
