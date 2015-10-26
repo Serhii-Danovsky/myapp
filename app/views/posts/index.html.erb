@@ -97,14 +97,26 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
+ <div class="row">
+    <div class="col-sm-4" ><%= link_to t('.new', :default => t("helpers.links.new")),
             new_post_path,
-            :class => 'btn btn-primary' %>
+            :class => 'btn btn-primary' %></div>
+    <div class="col-sm-4" ></div>
+    <div class="col-sm-4" >
+    	<%= link_to(posts_path(format: "xls"), :class => 'btn btn-xs btn-success') do %>
+ <strong>Download all</strong> <img src="<%= asset_path('XLS.png') %>" alt="Cinque Terre" width="32" height=32"> 
+<% end %>
+
+<%= link_to(posts_path(format: "csv"), :class => 'btn btn-xs btn-success') do %>
+ <strong>Download all</strong> <img src="<%= asset_path('CSV.png') %>" class="img-rounded" alt="Cinque Terre" width="32" height=32"> 
+<% end %> 
+
+    </div>
+  </div>
+</div>
+
+
+
 
 
  
-
-
-
-
