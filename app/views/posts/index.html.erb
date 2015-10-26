@@ -6,13 +6,18 @@
 <% end %>
 
 <%- model_class = Post -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
-</div>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href=""><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %>
+</a>
+    </div>
+  </div>
+</nav>
+
 <table class="table table-striped">
   <thead>
     <tr>
-      
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:body) %></th>
       <th><%= model_class.human_attribute_name(:tags) %></th>
@@ -23,8 +28,7 @@
   </thead>
   <tbody>
     <% @posts.each_with_index do |post, index| %>
-      <tr>
-       
+      <tr> 
         <td><%= post.title %></td>
         <td><%= post.body %></td>
         <td><%= post.tags %></td>
