@@ -1,0 +1,20 @@
+<h1>Login</h1>
+
+<%= form_tag('/sessions', method: :post ) do %>
+
+
+<div class="col-sm-2">
+
+    <div class="field ">
+    <%= label_tag 'Email',  nil, :class => 'control-label'  %>
+      <%= text_field_tag :email , nil, :class => 'form-control ' %>
+    </div>
+    <div class="field ">
+    <%= label_tag 'Password',  nil, :class => 'control-label'  %>
+      <%= password_field_tag :password , nil, :class => 'form-control' %>
+    </div>
+    <div class="actions">
+      <%= submit_tag 'Login' , name: nil, class: "btn btn-primary" %>
+    </div>
+
+<% end %>

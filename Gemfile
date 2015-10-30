@@ -31,7 +31,7 @@ gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) support
 gem "twitter-bootstrap-rails"
 # Use Unicorn as the app server
 # gem 'unicorn'
-
+gem 'quiet_assets', group: :development
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -1,0 +1,34 @@
+<% if notice.present? %>
+ <div class="alert alert-info fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong><%= notice %></strong> 
+  </div>
+<% end %>
+
+<h1>Registration</h1>
+
+<%= form_for @user, :html => { :class => "form-horizontal post" } do |f| %>
+
+<div class="col-sm-2"> 
+    <div class="control-group">
+      <%= f.label :name, :class => 'control-label'  %>
+      <div class="controls">
+        <%= f.text_field :name,    :class => 'form-control' , :placeholder => "Enter name" %>
+
+    <div class="control-group">
+      <%= f.label :email, :class => 'control-label'  %>
+      <div class="controls">
+        <%= f.text_field :email, :class => 'form-control', :placeholder => "Enter email" %>
+
+    <div class="control-group">
+      <%= f.label :password, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.password_field :password, :class => 'form-control', :placeholder => "Enter password" %>
+
+<br>
+
+    <%= f.submit nil, :class => 'btn btn-primary btn-block ' %>
+
+
+<% end %>
+

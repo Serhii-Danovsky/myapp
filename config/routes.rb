@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
+
+
+  get 'sessions/login'
+
+  get 'sessions/logout'
+ post 'sessions' => 'sessions#create'
   resources :posts
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
+get 'registration' => 'users#new' #, as: 'registration'
+  post 'users' => 'users#create'
   # You can have the root of your site routed with "root"
    root 'posts#index'
 

@@ -1,6 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+   <a class="navbar-brand " href="/">Post</a>
+    </div>
+     <div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://github.com/Serhii-Danovsky/myapp.git"> <img src="<%= asset_path('Github_Logo.png') %>" alt="Cinque Terre" width="24" height="24"></a></li>
+      </ul>
+    </div>
+      <ul class="nav navbar-nav navbar-right">
+      
+      <%  if current_user %>
+      <li><a class="navbar-brand " >Hi , <%= current_user.name.capitalize   %>!</a></li>
+      <li><a href="/sessions/logout">Logout</a></li>
+      <% else %>
+        <li><a href="/registration">Registration</a></li>
+        <li><a href="/sessions/login">Login</a></li>
+        
+        <% end %>
+      </ul>
+  </div>
+</nav>
+
+
 
   <script type="text/javascript">
 <!--
@@ -29,19 +54,11 @@ window.onload=titler;
   <%= csrf_meta_tags %>
 </head>
 <body>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-   <a class="navbar-brand " href="/">Post</a>
-    </div>
-     <div>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="https://github.com/Serhii-Danovsky/myapp.git"> <img src="<%= asset_path('Github_Logo.png') %>" alt="Cinque Terre" width="32" height=32"></a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+
+
 <%= yield %>
+
 
 </body>
 </html>
+
