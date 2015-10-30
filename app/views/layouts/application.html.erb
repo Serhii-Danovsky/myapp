@@ -14,11 +14,11 @@
       <ul class="nav navbar-nav navbar-right">
       
       <%  if current_user %>
-      <li><a class="navbar-brand " >Hi , <%= current_user.name.capitalize   %>!</a></li>
-      <li><a href="/sessions/logout">Logout</a></li>
+      <li><a class="navbar-brand " >Hi , <%= current_user.name.capitalize   %> !</a></li>
+      <li><a href="/sessions/logout"><img src="<%= asset_path('logout.png') %>" class="img-rounded" alt="Cinque Terre" width="32" height=32">Logout</a></li>
       <% else %>
-        <li><a href="/registration">Registration</a></li>
-        <li><a href="/sessions/login">Login</a></li>
+        <li><a href="/registration"><img src="<%= asset_path('registration.png') %>" class="img-rounded" alt="Cinque Terre" width="32" height=32">Registration</a></li>
+        <li><a href="/sessions/login"><img src="<%= asset_path('login.png') %>" class="img-rounded" alt="Cinque Terre" width="32" height=32"> Login</a></li>
         
         <% end %>
       </ul>
