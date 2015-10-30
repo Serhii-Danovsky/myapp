@@ -1,3 +1,10 @@
+
+<% if notice.present? %>
+ <div class="alert alert-info fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong><%= notice %></strong> 
+  </div>
+<% end %>
 <h1>Login</h1>
 
 <%= form_tag('/sessions', method: :post ) do %>
