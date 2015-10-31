@@ -25,8 +25,8 @@
         <td><%= post.title %></td>
         <td><%= post.body %></td>
         <td><%= post.tags %></td>
-        <td><%=l post.created_at %></td>
-        <td><%=l post.updated_at %></td>
+        <td><%= post.created_at.strftime("Posted on %B %d, %A, %Y at %H:%M") %></td>
+        <td><%= post.updated_at.strftime("Updated on %B %d, %A, %Y at %H:%M") %></td>
         <td><%= post.user.name %></td>
         <td>
   <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo<%= index+1 %>">Actions</button>
