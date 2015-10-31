@@ -34,7 +34,8 @@ def count
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
+
+  @post = Post.new(post_params)
 
     respond_to do |format|
       if @post.save
@@ -79,6 +80,6 @@ def count
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :body, :tags)
+      params.require(:post).permit(:title, :body, :tags).merge(user_id: current_user.id)
     end
 end

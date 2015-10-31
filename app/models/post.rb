@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+ belongs_to :user
   validates :title, :body, :tags, presence: true
   validates :title, uniqueness: true
   validates :title, length: { in: 5..100 }
