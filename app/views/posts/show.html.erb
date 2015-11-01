@@ -16,6 +16,8 @@
   <dd><%= @post.body %></dd>
   <dt><strong><%= model_class.human_attribute_name(:tags) %>:</strong></dt>
   <dd><%= @post.tags %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:User_id) %>:</strong></dt>
+  <dd><%= @post.user.name %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
