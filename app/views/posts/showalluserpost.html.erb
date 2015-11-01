@@ -15,7 +15,7 @@
 
 <% else %>
 <%- model_class = Post -%>
-
+<div class="container-fluid">
 <table class="table table-bordered">
   <thead>
     <tr class="success">
@@ -37,7 +37,7 @@
         <td><%= post.created_at.strftime("Posted on %B %d, %A, %Y at %H:%M") %></td>
         <td><%= post.updated_at.strftime("Updated on %B %d, %A, %Y at %H:%M") %></td>
         <td><%= post.user.name %></td>
-        <td>
+        <td align="center">
   <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo<%= index+1 %>">Actions</button>
   <div id="demo<%= index+1 %>" class="collapse" >
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
@@ -55,6 +55,7 @@
         <h4 class="modal-title">Post <%= post.id %></h4>
       </div>
       <div class="modal-body">
+
          <table class="table table-striped">
   <thead>
     <tr>  
@@ -101,4 +102,5 @@
     <% end %>
   </tbody>
 </table>
+</div>
 <% end %>
