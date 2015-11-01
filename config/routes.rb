@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 
   get 'sessions/login'
-
+  get 'all_user_post' => 'posts#showalluserpost'
   get 'sessions/logout'
  post 'sessions' => 'sessions#create'
   resources :posts
