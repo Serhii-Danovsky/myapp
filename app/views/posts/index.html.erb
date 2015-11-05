@@ -5,6 +5,18 @@
   </div>
 <% end %>
 
+<div class="container">
+<div class = "panel panel">
+   <div class = "panel-heading">
+      <h3 class = "panel-title"><div class="container-fluid">
+ <div class="row">
+    <div class="col-sm-4" ><%= link_to t('.new', :default => t("New Post")),
+            new_post_path,
+            :class => 'btn btn-primary' %></div>
+    
+    <div class="col-sm-4" ></div>
+
+<div class="col-sm-4" >
 <div  class="search-form navbar-right">
 <%= form_for('posts' , method: :get) do %> 
 <div class="col-sm-7">
@@ -13,9 +25,13 @@
 <%= submit_tag 'Search'  , :class => "btn btn-success"  ,data: { disable_with: "Searching..." }   %>
 <% end %>
 </div>
-<br>
-<br>
-<br>
+</div>
+
+  </div>
+</div></h3>
+   </div>
+</div>
+</div>
 
 <%- model_class = Post -%>
 
@@ -107,19 +123,14 @@
     </div>
 <% end %>
 
-
-
-<div class="container-fluid">
-<div class = "panel panel-danger">
+<div class="container">
+<div class = "panel panel">
    <div class = "panel-heading">
       <h3 class = "panel-title"><div class="container-fluid">
  <div class="row">
-    <div class="col-sm-4" ><%= link_to t('.new', :default => t("New Post")),
-            new_post_path,
-            :class => 'btn btn-primary' %></div>
-    <div class="col-sm-4" ></div>
+    <div class="col-sm-4" ></div> 
     <div class="col-sm-4" >
-    	<%= link_to(posts_path(format: "xls"), :class => 'btn btn-xs btn-success') do %>
+      <%= link_to(posts_path(format: "xls"), :class => 'btn btn-xs btn-success') do %>
  <strong>Download all </strong><span class="badge"> <%= Post.count %> </span><img src="<%= asset_path('XLS.png') %>" alt="Cinque Terre" width="32" height=32"> 
 <% end %>
 
@@ -127,6 +138,8 @@
  <strong>Download all </strong><span class="badge"> <%= Post.count %> </span> <img src="<%= asset_path('CSV.png') %>" class="img-rounded" alt="Cinque Terre" width="32" height=32"> 
 <% end %> 
     </div>
+<div class="col-sm-4" ></div>
+
   </div>
 </div></h3>
    </div>
