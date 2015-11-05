@@ -4,46 +4,36 @@
     <strong><%= notice %></strong> 
   </div>
 <% end %>
-<% if @posts.empty? %> 
 
-<div class="container">
-  <h1>You have not created any post</h1>
-  <h2>Click  <%= link_to t('.new', :default => t("New Post")),
-            new_post_path,
-            :class => 'btn btn-primary' %> to create post</h2>           
-</div>
-
-<% else %>
 <%- model_class = Post -%>
 <div class="container-fluid">
-<table class="table table-bordered">
-  <thead>
-    <tr class="success">
-      <th><%= model_class.human_attribute_name(:title) %></th>
-      <th><%= model_class.human_attribute_name(:body) %></th>
-      <th><%= model_class.human_attribute_name(:tags) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%= model_class.human_attribute_name(:updated_at) %></th>
-      <th><%= model_class.human_attribute_name(:user_id) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
     <% @posts.each_with_index do |post, index| %>
-      <tr> 
-        <td><%= post.title %></td>
-        <td><%= post.body %></td>
-        <td><%= post.tags %></td>
-        <td><%= post.created_at.strftime("Posted on %B %d, %A, %Y at %H:%M") %></td>
-        <td><%= post.updated_at.strftime("Updated on %B %d, %A, %Y at %H:%M") %></td>
-        <td><%= post.user.name %></td>
-        <td align="center">
-  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo<%= index+1 %>">Actions</button>
+      
+<div class="panel panel-primary">
+    <div class="panel-heading"><%= post.title %></div>
+    <div class="panel-body">
+        <table class="table table-condensed">
+          
+                <tr>
+                    <td align="justify"><%= post.body %></td> 
+                </tr>
+                <tr>  
+                    <td><font color="#858585"><b><i><%= post.tags %></i></b></font></td>
+                </tr>
+                 <tr>
+                 
+                    <th><p align="right">Created by <%= post.user.name %></p></th>
+                </tr>
+                <tr>
+                    <td align="right"><%= post.created_at.strftime("Posted on %B %d, %A, %Y at %H:%M") %> | <%= post.updated_at.strftime("Updated on %B %d, %A, %Y at %H:%M") %></td>
+                </tr>     
+                <tr>
+                    <td align="left"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo<%= index+1 %>">Actions</button>
   <div id="demo<%= index+1 %>" class="collapse" >
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_post_path(post), :class => 'btn btn-xs btn-success'  %> <br>
+                      edit_post_path(post), :class => 'btn btn-xs btn-success'  %> 
   <%= link_to t('.show', :default => t("helpers.links.show")),
-                      post_path(post), :class => 'btn btn-xs btn-warning' %><br>
+                      post_path(post), :class => 'btn btn-xs btn-warning' %>
    <button type="button" class="btn btn-xs btn-warning main" data-toggle="modal" data-target="#myModal<%= index+1 %>">Show Modal</button>
 <!-- Modal -->
 <div id="myModal<%= index+1 %>" class="modal fade" role="dialog">
@@ -88,7 +78,6 @@
     </div>
   </div>
 </div>
-<br>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       post_path(post),
                       :method => :delete,
@@ -97,13 +86,37 @@
   </div>
 </div>
           
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-</div>
+        </td></td>
+                </tr>  
+        </table>
+         
+    </div>
+    </div>
 <% end %>
+
+
+
 <div class="container-fluid">
-<%= link_to 'Back', url_for(:back), :class => 'btn btn-primary btn-block' %>
+<div class = "panel panel-danger">
+   <div class = "panel-heading">
+      <h3 class = "panel-title"><div class="container-fluid">
+ <div class="row">
+    <div class="col-sm-4" ><%= link_to t('.new', :default => t("New Post")),
+            new_post_path,
+            :class => 'btn btn-primary' %></div>
+    <div class="col-sm-4" ></div>
+    <div class="col-sm-4" >
+      <%= link_to(posts_path(format: "xls"), :class => 'btn btn-xs btn-success') do %>
+ <strong>Download all </strong><span class="badge"> <%= Post.count %> </span><img src="<%= asset_path('XLS.png') %>" alt="Cinque Terre" width="32" height=32"> 
+<% end %>
+
+<%= link_to(posts_path(format: "csv"), :class => 'btn btn-xs btn-success') do %>
+ <strong>Download all </strong><span class="badge"> <%= Post.count %> </span> <img src="<%= asset_path('CSV.png') %>" class="img-rounded" alt="Cinque Terre" width="32" height=32"> 
+<% end %> 
+    </div>
+  </div>
+</div></h3>
+   </div>
+</div>
+</div>
 </div>
