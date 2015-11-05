@@ -8,7 +8,7 @@ class PostsController < ApplicationController
       @posts = Post.where('body LIKE ? or title LIKE ? or  tags LIKE ? ',
         "%#{params[:query]}%","%#{params[:query]}%", "%#{params[:query]}%")
     else
-    @posts = Post.all
+    @posts = Post.order(id: :desc)
     respond_to do |format|
     format.html
     format.csv { send_data @posts.to_csv }
