@@ -11,6 +11,7 @@ class PostsController < ApplicationController
     @posts = Post.order(id: :desc)
     respond_to do |format|
     format.html
+    format.json
     format.csv { send_data @posts.to_csv }
     format.xls # { send_data @posts.to_csv(col_sep: "\t") }
   end
@@ -25,6 +26,10 @@ def count
   # GET /posts/1
   # GET /posts/1.json
   def show
+    respond_to do |format|
+    format.html
+    format.json
+    end
   end
 
   # GET /posts/new
