@@ -5,6 +5,18 @@
   </div>
 <% end %>
 
+<div  class="search-form navbar-right">
+<%= form_for('posts' , method: :get) do %> 
+<div class="col-sm-7">
+<%= search_field_tag :query, params[:query] , :class => "form-control" %>
+</div>
+<%= submit_tag 'Search'  , :class => "btn btn-success"  ,data: { disable_with: "Searching..." }   %>
+<% end %>
+</div>
+<br>
+<br>
+<br>
+
 <%- model_class = Post -%>
 <div class="container-fluid">
 <table class="table table-bordered">

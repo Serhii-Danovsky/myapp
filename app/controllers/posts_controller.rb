@@ -4,11 +4,16 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+    if params[:query].present?
+      @posts = Post.where('body LIKE ? or title LIKE ? or  tags LIKE ? ',
+        "%#{params[:query]}%","%#{params[:query]}%", "%#{params[:query]}%")
+    else
     @posts = Post.all
     respond_to do |format|
     format.html
     format.csv { send_data @posts.to_csv }
     format.xls # { send_data @posts.to_csv(col_sep: "\t") }
+  end
   end
   end
 
