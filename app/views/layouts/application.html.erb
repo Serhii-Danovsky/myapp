@@ -58,6 +58,32 @@ window.onload=titler;
   </div>
 </nav>
 
+<% if 0 ==  cookies[:views].to_i%10 %>
+<script type="text/javascript">
+
+  $(function(){
+    
+
+      $.gritter.add({
+        // (string | mandatory) the heading of the notification
+        title: 'Учитесь вместе с GeekHub!',
+        // (string | mandatory) the text inside the notification
+        text: 'GeekHub надає можливість отримати практичні знання та навички в сфері розробки програмного забезпечення. На відміну від традиційної освіти, викладачі GeekHub працюють з новітніми технологіями у провідних софтверних компаніях.',
+        // (string | optional) the image to display on the left
+        image: "<%= asset_path('gh.jpg') %>",
+        // (bool | optional) if you want it to fade out on its own or just sit there
+        sticky: false,
+        // (int | optional) the time you want it to be alive for before fading out
+        time: ''
+      });
+
+      return false;
+
+    });
+  
+</script>
+<% end %>
+
 <%= yield %>
 
 
