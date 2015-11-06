@@ -8,12 +8,19 @@ class PostsController < ApplicationController
       @posts = Post.where('body LIKE ? or title LIKE ? or  tags LIKE ? ',
         "%#{params[:query]}%","%#{params[:query]}%", "%#{params[:query]}%")
     else
+
     @posts = Post.order(id: :desc)
+     cookies[:views] = if cookies[:views].present?
+       cookies[:views].to_i + 1
+      else
+    1
+  end
     respond_to do |format|
     format.html
     format.json
     format.csv { send_data @posts.to_csv }
     format.xls # { send_data @posts.to_csv(col_sep: "\t") }
+
   end
   end
   end
