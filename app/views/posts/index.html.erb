@@ -28,26 +28,20 @@
 <% end %>
 </div>
 </div>
-
-  </div>
+</div>
 </div></h3>
-   </div>
 </div>
 </div>
-
+</div>
 
 <% if @posts.count > 0 %>
-
 <%- model_class = Post -%>
-
 <div class="container">
-    <% @posts.each_with_index do |post, index| %>
-
+<% @posts.each_with_index do |post, index| %>
 <div class="panel panel-primary">
     <div class="panel-heading"><%= post.title %></div>
     <div class="panel-body">
-        <table class="table table-condensed">
-          
+        <table class="table table-condensed">          
                 <tr>
                     <td align="justify"><%= post.body %></td> 
                 </tr>
@@ -55,7 +49,6 @@
                     <td><font color="#858585"><b><i><%= post.tags %></i></b></font></td>
                 </tr>
                  <tr>
-                 
                     <th><p align="right">Created by <%= post.user.name %></p></th>
                 </tr>
                 <tr>
@@ -63,10 +56,10 @@
                 </tr>     
                 <tr>
                     <td align="left"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo<%= index+1 %>">Actions</button>
-  <div id="demo<%= index+1 %>" class="collapse" >
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+    <div id="demo<%= index+1 %>" class="collapse" >
+    <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_post_path(post), :class => 'btn btn-xs btn-success'  %> 
-  <%= link_to t('.show', :default => t("helpers.links.show")),
+    <%= link_to t('.show', :default => t("helpers.links.show")),
                       post_path(post), :class => 'btn btn-xs btn-warning' %>
    <button type="button" class="btn btn-xs btn-warning main" data-toggle="modal" data-target="#myModal<%= index+1 %>">Show Modal</button>
 <!-- Modal -->
@@ -79,7 +72,6 @@
         <h4 class="modal-title">Post <%= post.id %></h4>
       </div>
       <div class="modal-body">
-
          <table class="table table-striped">
   <thead>
     <tr>  
@@ -102,7 +94,6 @@
         <td>
         </td>
       </tr>
-    
   </tbody>
 </table>
       </div>
@@ -119,13 +110,11 @@
                       :class => 'btn btn-xs btn-danger' %>
   </div>
 </div>
-          
-        </td>
-                </tr>  
+             </td>
+             </tr>  
         </table>
-         
-    </div>
-    </div>
+</div>
+</div>
 <% end %>
 
 <div class="container">
@@ -136,11 +125,11 @@
     <div class="col-sm-4" ></div> 
     <div class="col-sm-4" >
       <%= link_to(posts_path(format: "xls"), :class => 'btn btn-xs btn-success') do %>
- <strong>Download all </strong><span class="badge"> <%= Post.count %> </span><img src="<%= asset_path('XLS.png') %>" alt="Cinque Terre" width="32" height=32"> 
+ <strong>Download all </strong><span class="badge"> <%= Post.count %> </span><%= image_tag("XLS.png", size: "32")  %>
 <% end %>
 
 <%= link_to(posts_path(format: "csv"), :class => 'btn btn-xs btn-success') do %>
- <strong>Download all </strong><span class="badge"> <%= Post.count %> </span> <img src="<%= asset_path('CSV.png') %>" class="img-rounded" alt="Cinque Terre" width="32" height=32"> 
+ <strong>Download all </strong><span class="badge"> <%= Post.count %> </span><%= image_tag("CSV.png", size: "32")  %>
 <% end %> 
     </div>
 <div class="col-sm-4" ></div>
