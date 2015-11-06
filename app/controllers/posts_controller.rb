@@ -21,11 +21,6 @@ class PostsController < ApplicationController
   end
   end
 
-
-def count
-    @post = Post.find(params[:post_id])
-
-  end
   # GET /posts/1
   # GET /posts/1.json
   def show
