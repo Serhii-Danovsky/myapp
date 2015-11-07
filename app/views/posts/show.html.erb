@@ -7,33 +7,35 @@
 <%- model_class = Post -%>
 <div class="container">
 <p align="center"><%=link_to image_tag("Json.png", size: "32") , request.original_url+".json" %></p>
-<div class = "panel panel-success ">
-<div class = "panel-heading ">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
-</div>
-</div>
-</div>
-<div class="container">
-<strong><%= model_class.human_attribute_name(:title) %>:</strong>
-<%= @post.title %>
-<br>
-<strong><%= model_class.human_attribute_name(:body) %>:</strong>
-<%= @post.body %>
-<br>
-<strong><%= model_class.human_attribute_name(:tags) %>:</strong>
-<%= @post.tags %>
-<br>
-<strong><%= model_class.human_attribute_name(:User_id) %>:</strong>
-<%= @post.user.name %>
+<div class="panel panel-primary">
+    <div class="panel-heading"><%= @post.title %></div>
+    <div class="panel-body">
+        <table class="table table-condensed">          
+                <tr>
+                    <td align="justify"><%= @post.body %></td> 
+                </tr>
+                <tr>  
+                    <td><font color="#858585"><b><i><%= @post.tags %></i></b></font></td>
+                </tr>
+                 <tr>
+                    <th><p align="right">Created by <%= @post.user.name %></p></th>
+                </tr>
+                <tr>
+                    <td align="right"><%= @post.created_at.strftime("Posted on %B %d, %A, %Y at %H:%M") %> | <%= @post.updated_at.strftime("Updated on %B %d, %A, %Y at %H:%M") %></td>
+                </tr>   
+        </table>
+        </div>
+ </div>
  <br>
-
+<div class="btn-group btn-group-justified">
 <%= link_to t('.back', :default => t("helpers.links.back")),
               posts_path, :class => 'btn btn-primary'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_post_path(@post), :class => 'btn btn-primary' %>
+              edit_post_path(@post), :class => 'btn btn-success' %>
 <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               post_path(@post),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
+</div>
 </div>
