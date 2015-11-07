@@ -10,7 +10,7 @@
     <% @posts.each_with_index do |post, index| %>
       
 <div class="panel panel-primary">
-    <div class="panel-heading"><%= post.title %></div>
+    <div class="panel-heading"><strong><kbd><%= post.title %></kbd></strong></div>
     <div class="panel-body">
         <table class="table table-condensed">
           
@@ -22,7 +22,7 @@
                 </tr>
                  <tr>
                  
-                    <th><p align="right">Created by <%= post.user.name %></p></th>
+                    <th><p align="right">Created by <strong><kbd><%= post.user.name %></kbd></strong></p></th>
                 </tr>
                 <tr>
                     <td align="right"><%= post.created_at.strftime("Posted on %B %d, %A, %Y at %H:%M") %> | <%= post.updated_at.strftime("Updated on %B %d, %A, %Y at %H:%M") %></td>
@@ -46,31 +46,25 @@
       </div>
       <div class="modal-body">
 
-         <table class="table table-striped">
-  <thead>
-    <tr>  
-      <th><%= model_class.human_attribute_name(:title) %></th>
-      <th><%= model_class.human_attribute_name(:body) %></th>
-      <th><%= model_class.human_attribute_name(:tags) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%= model_class.human_attribute_name(:updated_at) %></th>
-      <th><%= model_class.human_attribute_name(:user_id) %></th>
-  </tr>
-  </thead>
-  <tbody>
-      <tr>  
-        <td><%= post.title %></td>
-        <td><%= post.body %></td>
-        <td><%= post.tags %></td>
-        <td><%=l post.created_at %></td>
-        <td><%=l post.updated_at %></td>
-        <td><%= post.user.name %></td>
-        <td>
-        </td>
-      </tr>
-    
-  </tbody>
-</table>
+    <div class="panel panel-primary">
+    <div class="panel-heading"><strong><kbd><%= post.title %></kbd></strong></div>
+    <div class="panel-body">
+        <table class="table table-condensed">          
+                <tr>
+                    <td align="justify"><%= post.body %></td> 
+                </tr>
+                <tr>  
+                    <td><font color="#858585"><b><i><%= post.tags %></i></b></font></td>
+                </tr>
+                 <tr>
+                    <th><p align="right">Created by <strong><kbd><%= post.user.name %></kbd></strong></p></th>
+                </tr>
+                <tr>
+                    <td align="right"><%= post.created_at.strftime("Posted on %B %d, %A, %Y at %H:%M") %> | <%= post.updated_at.strftime("Updated on %B %d, %A, %Y at %H:%M") %></td>
+                </tr>   
+        </table>
+        </div>
+     </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

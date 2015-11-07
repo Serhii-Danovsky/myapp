@@ -37,7 +37,7 @@
 <div class="container">
 <% @posts.each_with_index do |post, index| %>
 <div class="panel panel-primary">
-    <div class="panel-heading"><%= post.title %></div>
+    <div class="panel-heading"><strong><kbd><%= post.title %></kbd></strong></div>
     <div class="panel-body">
         <table class="table table-condensed">          
                 <tr>
@@ -47,7 +47,7 @@
                     <td><font color="#858585"><b><i><%= post.tags %></i></b></font></td>
                 </tr>
                  <tr>
-                    <th><p align="right">Created by <%= post.user.name %></p></th>
+                    <th><p align="right">Created by <strong><kbd><%= post.user.name %></kbd></strong></p></th>
                 </tr>
                 <tr>
                     <td align="right"><%= post.created_at.strftime("Posted on %B %d, %A, %Y at %H:%M") %> | <%= post.updated_at.strftime("Updated on %B %d, %A, %Y at %H:%M") %></td>
@@ -72,7 +72,7 @@
       <div class="modal-body">
     
     <div class="panel panel-primary">
-    <div class="panel-heading"><%= post.title %></div>
+    <div class="panel-heading"><strong><kbd><%= post.title %></kbd></strong></div>
     <div class="panel-body">
         <table class="table table-condensed">          
                 <tr>
@@ -82,7 +82,7 @@
                     <td><font color="#858585"><b><i><%= post.tags %></i></b></font></td>
                 </tr>
                  <tr>
-                    <th><p align="right">Created by <%= post.user.name %></p></th>
+                    <th><p align="right">Created by <strong><kbd><%= post.user.name %></kbd></strong></p></th>
                 </tr>
                 <tr>
                     <td align="right"><%= post.created_at.strftime("Posted on %B %d, %A, %Y at %H:%M") %> | <%= post.updated_at.strftime("Updated on %B %d, %A, %Y at %H:%M") %></td>
