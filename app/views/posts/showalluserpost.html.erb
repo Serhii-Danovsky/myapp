@@ -4,7 +4,7 @@
     <strong><%= notice %></strong> 
   </div>
 <% end %>
-
+<% if @posts.count > 0 %>
 <%- model_class = Post -%>
 <div class="container">
     <% @posts.each_with_index do |post, index| %>
@@ -97,5 +97,13 @@
 
 
 <div class="container-fluid">
+<%else%>
+<div class="container">
+<div class="panel panel-danger">
+      <div class="panel-heading"><p align="center"><font size="5">You have not created any post.</font></p></div>
+    </div>
+    </div>
+<div class="container">
+<%end%>
 <%= link_to 'Back', url_for(:back), :class => 'btn btn-primary btn-block' %>
 </div>
