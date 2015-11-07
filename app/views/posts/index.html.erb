@@ -123,11 +123,11 @@
     <div class="col-sm-4" ></div> 
     <div class="col-sm-4" >
       <%= link_to(posts_path(format: "xls"), :class => 'btn btn-xs btn-success') do %>
- <strong>Download all </strong><span class="badge"> <%= @posts.count %> </span><%= image_tag("XLS.png", size: "32")  %>
+ <strong>Download all </strong><span class="badge"> <%= Post.count %> </span><%= image_tag("XLS.png", size: "32")  %>
 <% end %>
 
 <%= link_to(posts_path(format: "csv"), :class => 'btn btn-xs btn-success') do %>
- <strong>Download all </strong><span class="badge"> <%= @posts.count %> </span><%= image_tag("CSV.png", size: "32")  %>
+ <strong>Download all </strong><span class="badge"> <%= Post.count %> </span><%= image_tag("CSV.png", size: "32")  %>
 <% end %> 
     </div>
 <div class="col-sm-4" ></div>
