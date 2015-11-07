@@ -4,12 +4,12 @@
     <strong><%= notice %></strong> 
   </div>
 <% end %>
-
+<div class="container">
 <h1>Registration</h1>
 
 <%= form_for @user, :html => { :class => "form-horizontal post" } do |f| %>
 
-<div class="col-sm-2"> 
+<div class="col-sm-3"> 
     <div class="control-group">
       <%= f.label :name, :class => 'control-label'  %>
       <div class="controls">
@@ -31,4 +31,5 @@
 
 
 <% end %>
+</div>
 

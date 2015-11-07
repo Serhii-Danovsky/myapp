@@ -5,12 +5,14 @@
     <strong><%= notice %></strong> 
   </div>
 <% end %>
+
+<div class="container">
 <h1>Login</h1>
 
 <%= form_tag('/sessions', method: :post ) do %>
 
 
-<div class="col-sm-2">
+<div class="col-sm-3">
 
     <div class="field ">
     <%= label_tag 'Email',  nil, :class => 'control-label'  %>
@@ -23,5 +25,8 @@
     <div class="actions">
       <%= submit_tag 'Login' , name: nil, class: "btn btn-primary" %>
     </div>
+  </div>
+  </div>
+    
 
 <% end %>

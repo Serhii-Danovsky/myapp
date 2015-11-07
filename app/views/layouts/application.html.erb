@@ -35,7 +35,7 @@ window.onload=titler;
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-   <a class="navbar-brand " href="/">Post</a>
+   <a class="navbar-brand " href="/"><strong><kbd>Post</kbd></strong></a>
     </div>
      <div>
       <ul class="nav navbar-nav navbar-right">
@@ -46,12 +46,12 @@ window.onload=titler;
       
       <%  if current_user %>
 
-      <li><a class="navbar-brand " ><font color="red">Hi , <%= current_user.name.capitalize   %> !</font></a></li>
-      <li><a class="navbar-brand " href="/all_user_post"><font color="blue">Show My Posts</font></a></li>
-      <li><a href="/sessions/logout"><img src="<%= asset_path('logout.png') %>" class="img-rounded" alt="Cinque Terre" width="32" height=32">Logout</a></li>
+      <li><a class="navbar-brand " > <strong><kbd>Hi, <%= current_user.name.capitalize %>!</kbd></strong></a></li>
+      <li><a class="navbar-brand " href="/all_user_post"><strong><kbd>Show My Posts</kbd></strong></a></li>
+      <li><a href="/sessions/logout"><img src="<%= asset_path('logout.png') %>" class="img-rounded" alt="Cinque Terre" width="32" height=32"><strong><kbd>Logout</kbd></strong></a></li>
       <% else %>
-        <li><a href="/registration"><img src="<%= asset_path('registration.png') %>" class="img-rounded" alt="Cinque Terre" width="32" height=32">Registration</a></li>
-        <li><a href="/sessions/login"><img src="<%= asset_path('login.png') %>" class="img-rounded" alt="Cinque Terre" width="32" height=32"> Login</a></li>
+        <li><a href="/registration"><img src="<%= asset_path('registration.png') %>" class="img-rounded" alt="Cinque Terre" width="32" height=32"><strong><kbd>Registration</kbd></strong></a></li>
+        <li><a href="/sessions/login"><img src="<%= asset_path('login.png') %>" class="img-rounded" alt="Cinque Terre" width="32" height=32"><strong><kbd>Login</kbd></strong></a></li>
         
         <% end %>
       </ul>
