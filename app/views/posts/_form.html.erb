@@ -36,6 +36,20 @@
     </div>
     <%= error_span(@post[:tags]) %>
   </div>
+
+   <%  if current_user %>
+  <div class="control-group">
+  <%= f.label :user_id, :class => 'control-label' %>
+  <div class="controls">
+    <%  if @post.user_id  %>
+     <%= f.text_field :user_id, value: @post.user.name, :class => 'form-control' , disabled:  true %>
+      <% else %>
+        <%= f.text_field :user_id, value: current_user.name, :class => 'form-control' , disabled:   true %>
+    <%end%>
+  </div>
+  </div>
+  <%end%>
+    
   <br>
   <%= f.submit nil, :class => 'btn btn-primary btn-block' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
