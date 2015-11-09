@@ -2,18 +2,18 @@
 <% if notice.present? %>
  <div class="alert alert-info fade in">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong><%= notice %></strong> 
+    <strong><%= notice %></strong>
   </div>
 <% end %>
 
 <div class="container">
-<h1>Login</h1>
+<p align="center"><strong><kbd>Login</kbd></strong></p>
 
 <%= form_tag('/sessions', method: :post ) do %>
 
 
-<div class="col-sm-3">
-
+<div class="col-sm-4"></div>
+<div class="col-sm-4">
     <div class="field ">
     <%= label_tag 'Email',  nil, :class => 'control-label'  %>
       <%= text_field_tag :email , nil, :class => 'form-control ' %>
@@ -25,8 +25,8 @@
     <div class="actions">
       <%= submit_tag 'Login' , name: nil, class: "btn btn-primary" %>
     </div>
+
   </div>
-  </div>
-    
+</div>
 
 <% end %>
