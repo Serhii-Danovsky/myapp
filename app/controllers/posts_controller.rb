@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   after_action :update_views
+  before_action :check_permissions, only: [:edit, :update, :destroy]
   # GET /posts
   # GET /posts.json
   def index
@@ -20,6 +21,13 @@ class PostsController < ApplicationController
   end
   end
   end
+
+
+  def check_permissions
+      unless @post.user == current_user
+        redirect_to root_path , notice: 'Action applies only to your posts !'
+      end
+    end
 
   def count
      @post = Post.find(params[:post_id])
