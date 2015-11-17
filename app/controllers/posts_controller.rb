@@ -36,6 +36,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @comments = @post.comments
     respond_to do |format|
     format.html
     format.json

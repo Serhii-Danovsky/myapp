@@ -1,37 +1,39 @@
 <% if notice.present? %>
  <div class="alert alert-info fade in">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong><%= notice %></strong> 
+    <strong><%= notice %></strong>
   </div>
 <% end %>
 <% if @posts.count > 0 %>
 <%- model_class = Post -%>
-<div class="container">
+<div class="container-fluid">
     <% @posts.each_with_index do |post, index| %>
-      
+
 <div class="panel panel-primary">
     <div class="panel-heading"><strong><kbd><%= post.title %></kbd></strong></div>
     <div class="panel-body">
         <table class="table table-condensed">
-          
+
                 <tr>
-                    <td align="justify"><%= post.body %></td> 
+                    <td align="justify"><%= post.body %></td>
                 </tr>
-                <tr>  
+                <tr>
                     <td><font color="#858585"><b><i><%= post.tags %></i></b></font></td>
                 </tr>
                  <tr>
-                 
-                    <th><p align="right">Created by <strong><kbd><%= post.user.name %></kbd></strong></p></th>
+                    <th><p align="right">Created by <strong><kbd><%= link_to(post.user.name, user_path(post.user))  %></kbd>
+                    <%= gravatar_for post.user %></strong></p></th>
                 </tr>
                 <tr>
                     <td align="right"><%= post.created_at.strftime("Posted on %B %d, %A, %Y at %H:%M") %> | <%= post.updated_at.strftime("Updated on %B %d, %A, %Y at %H:%M") %></td>
-                </tr>     
+                </tr>
                 <tr>
-                    <td align="left"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo<%= index+1 %>">Actions</button>
+                    <td align="left"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo<%= index+1 %>">Actions</button> <%= link_to  "#{post.comments.count} Comments", post_path(post, :anchor => :comments),
+                      title: "Add  comments",
+                      class: "btn btn-primary" %>
   <div id="demo<%= index+1 %>" class="collapse" >
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_post_path(post), :class => 'btn btn-xs btn-success'  %> 
+                      edit_post_path(post), :class => 'btn btn-xs btn-success'  %>
   <%= link_to t('.show', :default => t("helpers.links.show")),
                       post_path(post), :class => 'btn btn-xs btn-warning' %>
    <button type="button" class="btn btn-xs btn-warning main" data-toggle="modal" data-target="#myModal<%= index+1 %>">Show Modal</button>
@@ -49,11 +51,11 @@
     <div class="panel panel-primary">
     <div class="panel-heading"><strong><kbd><%= post.title %></kbd></strong></div>
     <div class="panel-body">
-        <table class="table table-condensed">          
+        <table class="table table-condensed">
                 <tr>
-                    <td align="justify"><%= post.body %></td> 
+                    <td align="justify"><%= post.body %></td>
                 </tr>
-                <tr>  
+                <tr>
                     <td><font color="#858585"><b><i><%= post.tags %></i></b></font></td>
                 </tr>
                  <tr>
@@ -61,7 +63,7 @@
                 </tr>
                 <tr>
                     <td align="right"><%= post.created_at.strftime("Posted on %B %d, %A, %Y at %H:%M") %> | <%= post.updated_at.strftime("Updated on %B %d, %A, %Y at %H:%M") %></td>
-                </tr>   
+                </tr>
         </table>
         </div>
      </div>
@@ -79,11 +81,11 @@
                       :class => 'btn btn-xs btn-danger' %>
   </div>
 </div>
-          
+
         </td></td>
-                </tr>  
+                </tr>
         </table>
-         
+
     </div>
     </div>
 <% end %>

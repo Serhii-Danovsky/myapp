@@ -1,20 +1,20 @@
 <% if notice.present? %>
  <div class="alert alert-info fade in">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong><%= notice %></strong> 
+    <strong><%= notice %></strong>
   </div>
 <% end %>
 <%- model_class = Post -%>
-<div class="container">
+<div class="container-fluid">
 <p align="center"><%=link_to image_tag("Json.png", size: "32") , request.original_url+".json" %></p>
 <div class="panel panel-primary">
     <div class="panel-heading"><strong><kbd><%= @post.title %></kbd></strong></div>
     <div class="panel-body">
-        <table class="table table-condensed">          
+        <table class="table table-condensed">
                 <tr>
-                    <td align="justify"><%= @post.body %></td> 
+                    <td align="justify"><%= @post.body %></td>
                 </tr>
-                <tr>  
+                <tr>
                     <td><font color="#858585"><b><i><%= @post.tags %></i></b></font></td>
                 </tr>
                  <tr>
@@ -22,7 +22,7 @@
                 </tr>
                 <tr>
                     <td align="right"><%= @post.created_at.strftime("Posted on %B %d, %A, %Y at %H:%M") %> | <%= @post.updated_at.strftime("Updated on %B %d, %A, %Y at %H:%M") %></td>
-                </tr>   
+                </tr>
         </table>
         </div>
  </div>
@@ -38,4 +38,26 @@
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
 </div>
+</div>
+<br>
+
+<div class="container-fluid">
+<h1><strong><kbd>Comments</kbd></strong></h1>
+<% @comments.each do |comment| %>
+<table class="table table-hover">
+  <tr>
+    <th rowspan="2" width="10%"><%= gravatar_for comment.user %><%= comment.user.name %></th>
+    <th><%=  comment.body %></th>
+  </tr>
+  <tr>
+    <td><%= comment.created_at.strftime("Comment add at %B %d, %A, %Y at %H:%M") %></td>
+  </tr>
+</table>
+<% end %>
+
+ <%  if current_user %>
+<%= link_to 'Add comment', new_post_comment_path(@post), class: 'btn btn-success add_comment' %>
+<% else%>
+<p><h2>Only registered users can post comments</h2> <p>
+<%end %>
 </div>

@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <h1>Profile</h1>
+  <table>
+    <tr>
+      <td class = 'user-info'>
+        <p><strong><kbd><%= @user.name %></kbd></strong></p>
+        <p><span><strong><kbd><%= @user.email %></kbd></strong></span></p>
+      </td>
+    </tr>
+  </table>
+  <h3>User posts:</h3>
+
+      <% @user_posts.each do |post| %>
+         <div class="panel panel-primary">
+    <div class="panel-heading"><strong><kbd><%= post.title %></kbd></strong></div>
+    <div class="panel-body">
+        <table class="table table-condensed">
+                <tr>
+                    <td align="justify"><%= post.body %></td>
+                </tr>
+                <tr>
+                    <td><font color="#858585"><b><i><%= post.tags %></i></b></font></td>
+                </tr>
+                 <tr>
+                    <th><p align="right">Created by <strong><kbd><%= post.user.name %></kbd></strong><%= gravatar_for post.user %></p></th>
+                </tr>
+                <tr>
+                    <td align="right"><%= post.created_at.strftime("Posted on %B %d, %A, %Y at %H:%M") %> | <%= post.updated_at.strftime("Updated on %B %d, %A, %Y at %H:%M") %></td>
+                </tr>
+        </table>
+        </div>
+ </div>
+      <% end %>
+</div>
+</div>

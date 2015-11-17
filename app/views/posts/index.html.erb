@@ -42,7 +42,7 @@
 
 <% if @posts.count > 0 %>
 <%- model_class = Post -%>
-<div class="container">
+<div class="container-fluid">
 <% @posts.each_with_index do |post, index| %>
 <div class="panel panel-primary">
     <div class="panel-heading"><strong><kbd><%= post.title %></kbd></strong></div>
@@ -55,13 +55,16 @@
                     <td><font color="#858585"><b><i><%= post.tags %></i></b></font></td>
                 </tr>
                  <tr>
-                    <th><p align="right">Created by <strong><kbd><%= post.user.name %></kbd></strong></p></th>
+                    <th><p align="right">Created by <strong><kbd><%= link_to(post.user.name, user_path(post.user))  %></kbd>
+                    <%= gravatar_for post.user %></strong></p></th>
                 </tr>
                 <tr>
                     <td align="right"><%= post.created_at.strftime("Posted on %B %d, %A, %Y at %H:%M") %> | <%= post.updated_at.strftime("Updated on %B %d, %A, %Y at %H:%M") %></td>
                 </tr>
                 <tr>
-                    <td align="left"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo<%= index+1 %>">Actions</button>
+                    <td align="left"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo<%= index+1 %>">Actions</button> <%= link_to  "#{post.comments.count} Comments", post_path(post, :anchor => :comments),
+                      title: "Add  comments",
+                      class: "btn btn-primary" %>
     <div id="demo<%= index+1 %>" class="collapse" >
     <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_post_path(post), :class => 'btn btn-xs btn-success'  %>
@@ -111,6 +114,7 @@
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
+
   </div>
 </div>
              </td>
