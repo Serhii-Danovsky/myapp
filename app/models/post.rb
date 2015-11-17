@@ -3,7 +3,8 @@ class Post < ActiveRecord::Base
  has_many :comments
   validates :title, :body, :tags, presence: true
   validates :title, uniqueness: true
-  validates :title, length: { in: 5..100 }
+  validates :title, length: { in: 5..140 }
+  validates :body, length: { minimum: 140 }
 
 def self.to_csv(options = {})
   CSV.generate(options) do |csv|
