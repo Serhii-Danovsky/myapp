@@ -22,6 +22,18 @@ class PostsController < ApplicationController
   end
   end
 
+  def votes
+    @post = Post.find(params[:post_id])
+    if params[:vote] == '+'
+      @post.upvote_from current_user
+    elsif params[:vote] == '-'
+      @post.downvote_from current_user
+    end
+  end
+
+
+
+
 
   def check_permissions
       unless @post.user == current_user

@@ -61,6 +61,12 @@
                 <tr>
                     <td align="right"><%= post.created_at.strftime("Posted on %B %d, %A, %Y at %H:%M") %> | <%= post.updated_at.strftime("Updated on %B %d, %A, %Y at %H:%M") %></td>
                 </tr>
+          <tr>
+            <td align="left"><a href="#" data-toggle="tooltip" title="For like or dislike do to show action." class="btn btn-danger btn-xs "><%= post.score_down %></a>
+              <a href="#" data-toggle="tooltip" title="For like or dislike do to show action." class="btn btn-success btn-xs "><%= post.score_up %></a>
+            </td>
+
+          </tr>
                 <tr>
                     <td align="left"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo<%= index+1 %>">Actions</button> <%= link_to  "#{post.comments.count} Comments", post_path(post, :anchor => :comments),
                       title: "Add  comments",

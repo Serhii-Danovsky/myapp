@@ -22,10 +22,37 @@
                 </tr>
                 <tr>
                     <td align="right"><%= @post.created_at.strftime("Posted on %B %d, %A, %Y at %H:%M") %> | <%= @post.updated_at.strftime("Updated on %B %d, %A, %Y at %H:%M") %></td>
+
                 </tr>
+
         </table>
         </div>
  </div>
+
+
+
+  <div class="dislike ">
+    <% if current_user && current_user != @post.user %>
+        <%= link_to votes_path(post_id: @post.id, vote: '-'), remote: true do %>
+            <button type="button" class="btn btn-danger btn-xs btn-group-justified">Dislike <span id="score_down"><%= @post.score_down %></span></button>
+        <% end %>
+    <% else %>
+        <button type="button" class="btn btn-danger btn-xs disabled btn-group-justified">Dislike <span id="score_down"><%= @post.score_down %></span></button>
+    <% end %>
+  </div>
+  <div class="like">
+    <% if current_user && current_user != @post.user %>
+        <%= link_to votes_path(post_id: @post.id, vote: '+'), remote: true do %>
+            <button type="button" class="btn btn-success btn-xs btn-group-justified">Like  <span id="score_up"><%= @post.score_up %></span></button>
+        <% end %>
+    <% else %>
+        <button type="button" class="btn btn-success btn-xs disabled btn-group-justified">Like  <span id="score_up"><%= @post.score_up %></span></button>
+    <% end %>
+  </div>
+
+
+
+
  <br>
 <div class="btn-group btn-group-justified">
 <%= link_to t('.back', :default => t("helpers.links.back")),
@@ -39,6 +66,7 @@
               :class => 'btn btn-danger' %>
 </div>
 </div>
+
 <br>
 
 <div class="container-fluid">

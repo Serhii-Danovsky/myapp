@@ -7,7 +7,8 @@ Rails.application.routes.draw do
  post 'sessions' => 'sessions#create'
  resources :posts do
   resources :comments
-end
+ end
+  get ':vote' => 'posts#votes', as: :votes
 
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.

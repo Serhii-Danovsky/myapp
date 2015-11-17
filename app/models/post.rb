@@ -1,6 +1,7 @@
 class Post < ActiveRecord::Base
  belongs_to :user
  has_many :comments
+ acts_as_votable
   validates :title, :body, :tags, presence: true
   validates :title, uniqueness: true
   validates :title, length: { in: 5..140 }
@@ -14,4 +15,13 @@ def self.to_csv(options = {})
     end
   end
 end
+
+
+ def score_up
+   self.get_upvotes.size
+ end
+
+ def score_down
+   self.get_downvotes.size
+ end
 end
