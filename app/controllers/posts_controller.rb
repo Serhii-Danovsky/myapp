@@ -7,9 +7,9 @@ class PostsController < ApplicationController
   def index
     if params[:query].present?
       @posts = Post.where('body LIKE ? or title LIKE ? or  tags LIKE ? ',
-                          "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%")
+                          "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%").newest
     else
-      @posts = Post.order(created_at: :desc)
+      @posts = Post.newest
 
       respond_to do |format|
         format.html

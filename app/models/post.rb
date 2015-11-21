@@ -7,6 +7,8 @@ class Post < ActiveRecord::Base
   validates :title, length: {in: 5..140}
   validates :body, length: {minimum: 140}
 
+  scope :newest, -> { order(created_at: :desc) }
+
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
       csv << column_names
