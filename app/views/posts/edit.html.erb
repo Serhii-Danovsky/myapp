@@ -1,13 +1,13 @@
- <% if notice.present? %>
- <div class="alert alert-info fade in">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong><%= notice %></strong> 
-  </div>
+<% if notice.present? %>
+    <div class="alert alert-info fade in">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong><%= notice %></strong>
+    </div>
 <% end %>
 <div class="container">
-<%- model_class = Post -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
-</div>
-<%= render :partial => 'form' %>
+  <%- model_class = Post -%>
+  <div class="page-header">
+    <h1><%= t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
+  </div>
+  <%= render :partial => 'form' %>
 </div>

@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
   def login
-
   end
 
   def create
@@ -17,7 +16,6 @@ class SessionsController < ApplicationController
   end
 
   def logout
-
     reset_session
     redirect_to root_path
     flash[:notice]='You successful logout'

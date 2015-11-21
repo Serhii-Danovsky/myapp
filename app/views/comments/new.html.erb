@@ -1,12 +1,21 @@
+<% if notice.present? %>
+    <div class="alert alert-info fade in">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong><%= notice %></strong>
+    </div>
+<% end %>
 
 <div class="container">
-<p align="center"><h1><strong><kbd>New comment</kbd></strong></p>
+  <p align="center">
 
-<%= form_for(@comment, url: { action: "create" }) do |f| %>
-<div class="control-group">
-<div class="controls">
-<%= f.text_area :body, :class => 'form-control', :placeholder => "Enter comment" %>
-<br>
-<%= f.submit nil, :class => 'btn btn-primary btn-block ' %>
+  <h1><strong><kbd>New comment</kbd></strong></h1>
+  <%= form_for(@comment, url: {action: "create"}) do |f| %>
+      <div class="control-group">
+        <div class="controls">
+          <%= f.text_area :body, :class => 'form-control', :placeholder => "Enter comment" %>
+          <br>
+          <%= f.submit nil, :class => 'btn btn-primary btn-block ' %>
+        </div>
+  <% end %>
+  </div>
 </div>
-<%  end %>

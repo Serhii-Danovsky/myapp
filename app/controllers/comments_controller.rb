@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
       flash[:notice] = 'Your comment was create'
       redirect_to @post
     else
-      flash.now[:danger] = 'error'
+      redirect_to :back, notice: 'ERROR'
     end
   end
 
