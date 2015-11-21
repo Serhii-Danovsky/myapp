@@ -85,6 +85,7 @@
           <td><%= comment.created_at.strftime("Comment add at %B %d, %A, %Y at %H:%M") %></td>
         </tr>
       </table>
+      <%= link_to 'DELETE', post_comment_path(@post, comment), method: :delete %>
   <% end %>
 
   <% if current_user %>
