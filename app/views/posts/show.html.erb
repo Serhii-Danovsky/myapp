@@ -78,7 +78,7 @@
   <% @comments.each do |comment| %>
       <table class="table table-hover">
         <tr>
-          <th rowspan="2" width="10%"><%= gravatar_for comment.user %><%= comment.user.name %></th>
+          <th rowspan="2" width="10%"><%= gravatar_for comment.user %><br><%= comment.user.name %></th>
           <th><%= comment.body %></th>
         </tr>
         <tr>
