@@ -9,7 +9,7 @@ class Post < ActiveRecord::Base
   validates :title, length: {in: 5..140}
   validates :body, length: {minimum: 140}
 
-  scope :newest, -> { order(created_at: :desc) }
+  scope :newest, -> { order(updated_at: :desc) }
   scope :popular, ->(posts) { posts.sort_by(&:score_up).last(3).reverse  }
   scope :active, -> { order(:updated_at).last(3).reverse }
 
