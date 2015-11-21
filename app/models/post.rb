@@ -11,7 +11,7 @@ class Post < ActiveRecord::Base
 
   scope :newest, -> { order(created_at: :desc) }
   scope :popular, ->(posts) { posts.sort_by(&:score_up).last(3).reverse  }
-  scope :active, -> { order(:updated_at).last(3) }
+  scope :active, -> { order(:updated_at).last(3).reverse }
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
