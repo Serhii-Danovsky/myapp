@@ -7,6 +7,7 @@
               <div class="col-md-12">
                 <div class="col-md-1">
                   <%= image_tag(post.image, height: 70) %>
+                  <br>
                   <% if current_user && favorite_post?(post) %>
                       <%= link_to  remove_from_favorite_post_path(post) do %>
                           <%= image_tag("remove-from-favorites.png", size: "20x20", alt: "Delete") %>

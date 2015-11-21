@@ -10,9 +10,17 @@
 <% @users.each do |user| %>
         <tr >
           <td><%= link_to user.name, user_path(user) %></td>
-          <td><%=  %><% user.rating.times do |i| %>
-                <%= image_tag("rating.png", size: "20x20", alt: "Star") %>
-            <% end %></td>
+          <td><%if user.rating>0 %>
+                <% user.rating.times do |i| %>
+                    <%= image_tag("rating_up.png", size: "20x20", alt: "Star") %>
+                <% end %>
+                <%elsif user.rating==0  %>
+                <%= image_tag("rating_down.png", size: "20x20", alt: "Star") %><%= image_tag("rating_up.png", size: "20x20", alt: "Star") %>
+                <% else %>
+                <% user.rating.abs.times do |i| %>
+                    <%= image_tag("rating_down.png", size: "20x20", alt: "Star") %>
+                <% end %>
+            <% end %>  </td>
 
         </tr>
   <% end %>

@@ -82,14 +82,18 @@
           <th><%= comment.body %></th>
         </tr>
         <tr>
-          <td><%= comment.created_at.strftime("Comment add at %B %d, %A, %Y at %H:%M") %></td>
+          <td><%= comment.created_at.strftime("Comment add at %B %d, %A, %Y at %H:%M") %><br><% if current_user.id == comment.user.id  %>
+
+                <%= link_to 'DELETE', post_comment_path(@post, comment), class: 'btn btn-danger btn-xs' , method: :delete %>
+            <% end %></td>
         </tr>
+
       </table>
-      <%= link_to 'DELETE', post_comment_path(@post, comment), method: :delete %>
+
   <% end %>
 
   <% if current_user %>
-      <%= link_to 'Add comment', new_post_comment_path(@post), class: 'btn btn-success add_comment' %>
+      <%= link_to 'Add comment', new_post_comment_path(@post), class: 'btn btn-success' %>
   <% else %>
       <p>
       <h2>Only registered users can post comments</h2>
