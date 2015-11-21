@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
   validates :body, length: {minimum: 140}
 
   scope :newest, -> { order(created_at: :desc) }
-  scope :popular, ->(posts) { posts.sort_by(&:score_up).last(3) }
+  scope :popular, ->(posts) { posts.sort_by(&:score_up).last(3).reverse  }
   scope :active, -> { order(:updated_at).last(3) }
 
   def self.to_csv(options = {})
