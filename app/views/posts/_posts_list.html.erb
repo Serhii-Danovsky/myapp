@@ -6,11 +6,15 @@
             <div class="panel-body">
               <div class="col-md-12">
                 <div class="col-md-1">
-                  <%= image_tag(post.image, height: 100) %>
+                  <%= image_tag(post.image, height: 70) %>
                   <% if current_user && favorite_post?(post) %>
-                      <%= link_to 'remove', remove_from_favorite_post_path(post) %>
+                      <%= link_to  remove_from_favorite_post_path(post) do %>
+                          <%= image_tag("remove-from-favorites.png", size: "20x20", alt: "Delete") %>
+                          <% end %>
                   <% elsif current_user && !favorite_post?(post) %>
-                      <%= link_to 'add_to_favorite', add_to_favorite_post_path(post) %>
+                      <%= link_to  add_to_favorite_post_path(post) do %>
+                          <%= image_tag("add-to-favorites.png", size: "20x20", alt: "Delete") %>
+                      <% end %>
                   <%  end %>
                 </div>
                 <div class="col-md-10">

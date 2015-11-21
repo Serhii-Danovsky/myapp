@@ -1,5 +1,33 @@
+
+<div class="container">
 <% @users.each do |user| %>
-    <%= link_to user.name, user_path(user) %>
-    <%= user.rating %>
-    <br>
-<% end %>
+      <div class="panel panel-primary">
+        <div class="panel-heading">Rating Users</div>
+        <div class="panel-body"><div class="table-responsive">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Rating</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td><%= link_to user.name, user_path(user) %></td>
+              <td><%= user.rating %></td>
+            </tr>
+            </tbody>
+          </table></div>
+      </div>
+  <% end %>
+</div>
+
+
+
+
+
+
+
+
+
+<%= link_to 'Back', url_for(:back), :class => 'btn btn-primary btn-block' %>
