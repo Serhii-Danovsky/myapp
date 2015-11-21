@@ -3,10 +3,26 @@
   <table>
     <tr>
       <td class='user-info'>
-        <p><span><strong><kbd><%= "id: #{@user.id}" %></kbd></strong></span></p>
-        <p><strong><kbd><%= @user.name %></kbd></strong></p>
-        <p><span><strong><kbd><%= @user.email %></kbd></strong></span></p>
-        <p><span><strong><kbd><%= "favorite posts: #{@user.favorite_posts.count.to_s}" %></kbd></strong></span></p>
+        <p><span><strong><kbd><%= "Id:  #{@user.id}" %></kbd></strong></span></p>
+
+        <p><strong><kbd><%= "Name:  #{@user.name}" %></kbd></strong></p>
+
+        <p><span><strong><kbd><%= "Email:  #{@user.email}" %></kbd></strong></span></p>
+
+        <p><span><strong><kbd><%= "Favorite posts: #{@user.favorite_posts.count.to_s}" %></kbd></strong></span></p>
+
+        <p><span><strong><kbd>User Rating</kbd>
+          <% if @user.rating>0 %>
+              <% @user.rating.times do |i| %>
+                  <%= image_tag("rating_up.png", size: "20x20", alt: "Star") %>
+              <% end %>
+          <% elsif @user.rating==0 %>
+              <%= image_tag("rating_down.png", size: "20x20", alt: "Star") %><%= image_tag("rating_up.png", size: "20x20", alt: "Star") %>
+          <% else %>
+              <% @user.rating.abs.times do |i| %>
+                  <%= image_tag("rating_down.png", size: "20x20", alt: "Star") %>
+              <% end %>
+          <% end %> </strong></span></p>
       </td>
     </tr>
   </table>
