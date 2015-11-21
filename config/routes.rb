@@ -3,11 +3,14 @@ Rails.application.routes.draw do
   get 'registration' => 'users#new' #, as: 'registration'
   get 'sessions/login'
   get 'all_user_post' => 'posts#showalluserpost'
+  get 'favorite_posts' => 'posts#favorite'
   get 'sessions/logout'
   post 'sessions' => 'sessions#create'
   resources :posts do
     get 'popular', on: :collection
     get 'active', on: :collection
+    get 'add_to_favorite', on: :member
+    get 'remove_from_favorite', on: :member
     resources :comments
   end
   get ':vote' => 'posts#votes', as: :votes

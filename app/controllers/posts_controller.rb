@@ -127,6 +127,28 @@ class PostsController < ApplicationController
     @posts = Post.active
   end
 
+  def add_to_favorite
+    post = Post.find(params[:id])
+    unless favorite_post?(post)
+      FavoritePost.create!(post_id: post.id, user_id: current_user.id)
+    end
+
+    redirect_to :back
+  end
+
+  def remove_from_favorite
+    post = Post.find(params[:id])
+    if favorite_post?(post)
+      current_user.favorite_posts.find_by(post_id: post.id).destroy
+    end
+
+    redirect_to :back
+  end
+
+  def favorite
+    @posts = current_user.favorite_posts.map(&:post)
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

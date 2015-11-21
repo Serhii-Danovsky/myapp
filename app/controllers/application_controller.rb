@@ -7,5 +7,10 @@ class ApplicationController < ActionController::Base
     current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
+  def favorite_post?(post)
+    current_user.favorite_posts.where(post_id: post.id).present?
+  end
+
   helper_method :current_user
+  helper_method :favorite_post?
 end
