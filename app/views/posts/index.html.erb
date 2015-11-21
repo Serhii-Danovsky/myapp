@@ -41,146 +41,29 @@
     </div>
   </div>
 </div>
-
-<% if @posts.count > 0 %>
-<div class="container-fluid">
-      <% @posts.each_with_index do |post, index| %>
-          <div class="panel panel-primary">
-            <div class="panel-heading"><strong><kbd><%= post.title %></kbd></strong></div>
-            <div class="panel-body">
-              <table class="table table-condensed">
-                <tr>
-                  <td align="justify"><%= post.body %></td>
-                </tr>
-                <tr>
-                  <td>
-                    <b>
-                      <i class="tags_show">
-                        <%= post.tags %>
-                      </i>
-                    </b>
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    <p align="right">Created by <strong><kbd><%= link_to(post.user.name, user_path(post.user)) %></kbd>
-                      <%= gravatar_for post.user %></strong>
-                    </p>
-                  </th>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <%= post.created_at.strftime("Posted on %B %d, %A, %Y at %H:%M") %>
-                    | <%= post.updated_at.strftime("Updated on %B %d, %A, %Y at %H:%M") %></td>
-                </tr>
-                <tr>
-                  <td align="left">
-                    <a href="#" data-toggle="tooltip" title="For like or dislike do to show action." class="btn btn-danger btn-xs ">
-                      <%= post.score_down %>
-                    </a>
-                    <a href="#" data-toggle="tooltip" title="For like or dislike do to show action." class="btn btn-success btn-xs ">
-                      <%= post.score_up %>
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td align="left">
-                    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo<%= index+1 %>">Actions</button>
-                    <%= link_to "#{post.comments.count} Comments", post_path(post, :anchor => :comments), title: "Add  comments", class: "btn btn-primary" %>
-                    <div id="demo<%= index+1 %>" class="collapse">
-                      <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                                  edit_post_path(post), :class => 'btn btn-xs btn-success' %>
-                      <%= link_to t('.show', :default => t("helpers.links.show")),
-                                  post_path(post), :class => 'btn btn-xs btn-warning' %>
-                      <button type="button" class="btn btn-xs btn-warning main" data-toggle="modal" data-target="#myModal<%= index+1 %>">Show
-                        Modal
-                      </button>
-                      <!-- Modal -->
-                      <div id="myModal<%= index+1 %>" class="modal fade" role="dialog">
-                        <div class="modal-dialog">
-                          <!-- Modal content-->
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal">&times;</button>
-                              <h4 class="modal-title">Post <%= post.id %></h4>
-                            </div>
-                            <div class="modal-body">
-
-                              <div class="panel panel-primary">
-                                <div class="panel-heading"><strong><kbd><%= post.title %></kbd></strong></div>
-                                <div class="panel-body">
-                                  <table class="table table-condensed">
-                                    <tr>
-                                      <td align="justify"><%= post.body %></td>
-                                    </tr>
-                                    <tr>
-                                      <td><font color="#858585"><b><i><%= post.tags %></i></b></font></td>
-                                    </tr>
-                                    <tr>
-                                      <th><p align="right">Created by <strong><kbd><%= post.user.name %></kbd></strong>
-                                      </p></th>
-                                    </tr>
-                                    <tr>
-                                      <td align="right"><%= post.created_at.strftime("Posted on %B %d, %A, %Y at %H:%M") %>
-                                        | <%= post.updated_at.strftime("Updated on %B %d, %A, %Y at %H:%M") %></td>
-                                    </tr>
-                                  </table>
-                                </div>
-                              </div>
-
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                                  post_path(post),
-                                  :method => :delete,
-                                  :data => {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},
-                                  :class => 'btn btn-xs btn-danger' %>
-
-                    </div>
-                  </td>
-                </tr>
-              </table>
+<%= render partial: 'posts/posts_list', locals: { posts: @posts }  %>
+<div class="container">
+  <div class="panel panel">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+              <%= link_to(posts_path(format: "xls"), :class => 'btn btn-xs btn-success') do %>
+                  <strong>Download
+                    all </strong><span class="badge"> <%= Post.count %> </span><%= image_tag("XLS.png", size: "32") %>
+              <% end %>
+              <%= link_to(posts_path(format: "csv"), :class => 'btn btn-xs btn-success') do %>
+                  <strong>Download
+                    all </strong><span class="badge"> <%= Post.count %> </span><%= image_tag("CSV.png", size: "32") %>
+              <% end %>
             </div>
-          </div>
-      <% end %>
-
-      <div class="container">
-        <div class="panel panel">
-          <div class="panel-heading">
-            <h3 class="panel-title">
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col-sm-4"></div>
-                  <div class="col-sm-4">
-                    <%= link_to(posts_path(format: "xls"), :class => 'btn btn-xs btn-success') do %>
-                        <strong>Download
-                          all </strong><span class="badge"> <%= Post.count %> </span><%= image_tag("XLS.png", size: "32") %>
-                    <% end %>
-                    <%= link_to(posts_path(format: "csv"), :class => 'btn btn-xs btn-success') do %>
-                        <strong>Download
-                          all </strong><span class="badge"> <%= Post.count %> </span><%= image_tag("CSV.png", size: "32") %>
-                    <% end %>
-                  </div>
-                  <div class="col-sm-4"></div>
-                </div>
-              </div>
-            </h3>
+            <div class="col-sm-4"></div>
           </div>
         </div>
-      </div>
-<% else %>
-    <div class="container">
-      <div class="panel panel-danger">
-        <div class="panel-heading"><p align="center"><font size="5">Nothing Found.</font></p></div>
-      </div>
+      </h3>
     </div>
-    <div class="container">
-      <%= link_to 'Back', url_for(:back), :class => 'btn btn-primary btn-block' %>
-    </div>
-<% end %>
+  </div>
+</div>
 </div>

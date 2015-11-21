@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post 'sessions' => 'sessions#create'
   resources :posts do
     get 'popular', on: :collection
+    get 'active', on: :collection
     resources :comments
   end
   get ':vote' => 'posts#votes', as: :votes
