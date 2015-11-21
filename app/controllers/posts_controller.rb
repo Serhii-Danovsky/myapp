@@ -29,7 +29,6 @@ class PostsController < ApplicationController
     end
   end
 
-
   def check_permissions
     unless @post.user == current_user
       redirect_to root_path, notice: 'Action applies only to your posts !'
@@ -118,6 +117,10 @@ class PostsController < ApplicationController
     else
       redirect_to posts_path, notice: 'You dont have permission to delete post.'
     end
+  end
+
+  def popular
+    @posts = Post.popular(Post.all)
   end
 
   private

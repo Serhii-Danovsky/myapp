@@ -2,88 +2,92 @@
 <html>
 <head>
 
-
-
-
   <script type="text/javascript">
-<!--
-var message = "MyApp- final";
-var message = message+" ";
-i="0";
-var temptitle="";
-var speed="150";
-function titler() {
-    if (!document.all&&!document.getElementById) return;
-    document.title=temptitle+message.charAt(i);
-    temptitle=temptitle+message.charAt(i);
-    i++;
-    if(i==message.length) {
-        i="0";
-        temptitle="";
-    }
-    setTimeout("titler()",speed);
-}
-window.onload=titler;
-// -->
-</script>
+      <!--
+      var message = "MyApp- final";
+      var message = message + " ";
+      i = "0";
+      var temptitle = "";
+      var speed = "150";
+      function titler() {
+          if (!document.all && !document.getElementById) return;
+          document.title = temptitle + message.charAt(i);
+          temptitle = temptitle + message.charAt(i);
+          i++;
+          if (i == message.length) {
+              i = "0";
+              temptitle = "";
+          }
+          setTimeout("titler()", speed);
+      }
+      window.onload = titler;
+      // -->
+  </script>
 
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <a href="#" class="btn back-to-top btn-light btn-fixed-bottom">To TOP</a>
+<a href="#" class="btn back-to-top btn-light btn-fixed-bottom">To TOP</a>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-   <a class="navbar-brand " href="/"><strong><kbd>Post</kbd></strong></a>
+      <a class="navbar-brand" href="/"><strong><kbd>Post</kbd></strong></a>
+      <a class="navbar-brand" href="/posts/popular"><strong><kbd>Popular</kbd></strong></a>
     </div>
-     <div>
+    <div>
       <ul class="nav navbar-nav navbar-right">
-        <li><%=link_to image_tag("Github_Logo.png", size: "24") , "https://github.com/Serhii-Danovsky/myapp.git" %>
-       </li>
+        <li><%= link_to image_tag("Github_Logo.png", size: "24"), "https://github.com/Serhii-Danovsky/myapp.git" %>
+        </li>
       </ul>
     </div>
-      <ul class="nav navbar-nav navbar-right">
-      
-      <%  if current_user %>
+    <ul class="nav navbar-nav navbar-right">
 
-      <li><a class="navbar-brand " > <strong><kbd>Hi, <%= current_user.name.capitalize %>!</kbd></strong></a></li>
-      <li><a class="navbar-brand " href="/all_user_post"><strong><kbd>Show My Posts</kbd></strong></a></li>
-      <li><a href="/sessions/logout"><img src="<%= asset_path('logout.png') %>" class="img-rounded" alt="Cinque Terre" width="32" height=32"><strong><kbd>Logout</kbd></strong></a></li>
+      <% if current_user %>
+
+          <li><a class="navbar-brand "> <strong><kbd>Hi, <%= current_user.name.capitalize %>!</kbd></strong></a></li>
+          <li><a class="navbar-brand " href="/all_user_post"><strong><kbd>Show My Posts</kbd></strong></a></li>
+          <li>
+            <a href="/sessions/logout"><img src="<%= asset_path('logout.png') %>" class="img-rounded" alt="Cinque Terre" width="32" height=32"><strong><kbd>Logout</kbd></strong></a>
+          </li>
       <% else %>
-        <li><a href="/registration"><img src="<%= asset_path('registration.png') %>" class="img-rounded" alt="Cinque Terre" width="32" height=32"><strong><kbd>Registration</kbd></strong></a></li>
-        <li><a href="/sessions/login"><img src="<%= asset_path('login.png') %>" class="img-rounded" alt="Cinque Terre" width="32" height=32"><strong><kbd>Login</kbd></strong></a></li>
-        
-        <% end %>
-      </ul>
+          <li>
+            <a href="/registration"><img src="<%= asset_path('registration.png') %>" class="img-rounded" alt="Cinque Terre" width="32" height=32"><strong><kbd>Registration</kbd></strong></a>
+          </li>
+          <li>
+            <a href="/sessions/login"><img src="<%= asset_path('login.png') %>" class="img-rounded" alt="Cinque Terre" width="32" height=32"><strong><kbd>Login</kbd></strong></a>
+          </li>
+
+      <% end %>
+    </ul>
   </div>
 </nav>
 
-<% if 0 ==  cookies[:views].to_i%10 %>
-<script type="text/javascript">
+<% if 0 == cookies[:views].to_i%10 %>
+    <script type="text/javascript">
 
-  $(function(){
-    
+        $(function () {
 
-      $.gritter.add({
-        // (string | mandatory) the heading of the notification
-        title: 'Учитесь вместе с GeekHub!',
-        // (string | mandatory) the text inside the notification
-        text: 'GeekHub надає можливість отримати практичні знання та навички в сфері розробки програмного забезпечення. На відміну від традиційної освіти, викладачі GeekHub працюють з новітніми технологіями у провідних софтверних компаніях.',
-        // (string | optional) the image to display on the left
-        image: "<%= asset_path('gh.jpg') %>",
-        // (bool | optional) if you want it to fade out on its own or just sit there
-        sticky: false,
-        // (int | optional) the time you want it to be alive for before fading out
-        time: ''
-      });
 
-      return false;
+            $.gritter.add({
+                // (string | mandatory) the heading of the notification
+                title: 'Учитесь вместе с GeekHub!',
+                // (string | mandatory) the text inside the notification
+                text: 'GeekHub надає можливість отримати практичні знання та навички в сфері розробки програмного забезпечення. На відміну від традиційної освіти, викладачі GeekHub працюють з новітніми технологіями у провідних софтверних компаніях.',
+                // (string | optional) the image to display on the left
+                image: "<%= asset_path('gh.jpg') %>",
+                // (bool | optional) if you want it to fade out on its own or just sit there
+                sticky: false,
+                // (int | optional) the time you want it to be alive for before fading out
+                time: ''
+            });
 
-    });
-  
-</script>
+            return false;
+
+        });
+
+    </script>
 <% end %>
 
 <%= yield %>

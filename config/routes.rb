@@ -4,10 +4,11 @@ Rails.application.routes.draw do
   get 'sessions/login'
   get 'all_user_post' => 'posts#showalluserpost'
   get 'sessions/logout'
- post 'sessions' => 'sessions#create'
- resources :posts do
-  resources :comments
- end
+  post 'sessions' => 'sessions#create'
+  resources :posts do
+    get 'popular', on: :collection
+    resources :comments
+  end
   get ':vote' => 'posts#votes', as: :votes
 
   resources :users
@@ -16,7 +17,7 @@ Rails.application.routes.draw do
 
   post 'users' => 'users#create'
   # You can have the root of your site routed with "root"
-   root 'posts#index'
+  root 'posts#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
