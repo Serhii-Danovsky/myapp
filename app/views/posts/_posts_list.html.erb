@@ -123,6 +123,8 @@
         <div class="panel-heading"><p align="center"><font size="5">Nothing Found.</font></p></div>
       </div>
     </div>
-    
 <% end %>
+<% if posts.count == 0 %>
+    <%= link_to 'Back', url_for(:back), :class => 'btn btn-primary btn-block' %>
+    <% end %>
 </div>
