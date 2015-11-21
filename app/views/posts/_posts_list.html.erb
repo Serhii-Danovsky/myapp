@@ -9,14 +9,14 @@
                   <%= image_tag(post.image, height: 70) %>
                   <br>
                   <% if current_user && favorite_post?(post) %>
-                      <%= link_to  remove_from_favorite_post_path(post) do %>
+                      <%= link_to remove_from_favorite_post_path(post) do %>
                           <%= image_tag("remove-from-favorites.png", size: "20x20", alt: "Delete") %>
-                          <% end %>
+                      <% end %>
                   <% elsif current_user && !favorite_post?(post) %>
-                      <%= link_to  add_to_favorite_post_path(post) do %>
+                      <%= link_to add_to_favorite_post_path(post) do %>
                           <%= image_tag("add-to-favorites.png", size: "20x20", alt: "Delete") %>
                       <% end %>
-                  <%  end %>
+                  <% end %>
                 </div>
                 <div class="col-md-10">
                   <table class="table table-condensed">
@@ -81,7 +81,8 @@
                                           <td><font color="#858585"><b><i><%= post.tags %></i></b></font></td>
                                         </tr>
                                         <tr>
-                                          <th><p align="right">Created by <strong><kbd><%= post.user.name %></kbd></strong>
+                                          <th><p align="right">Created by
+                                            <strong><kbd><%= post.user.name %></kbd></strong>
                                           </p></th>
                                         </tr>
                                         <tr>
@@ -111,7 +112,8 @@
                 </div>
                 <div class="col-md-1">
                   <%= gravatar_for post.user %>
-                  Created by <strong><kbd><%= link_to(post.user.name, semantic_path(post.user.id, post.user.name.to_param)) %></kbd></strong>
+                  Created by
+                  <strong><kbd><%= link_to(post.user.name, semantic_path(post.user.id, post.user.name.to_param)) %></kbd></strong>
                 </div>
               </div>
             </div>
@@ -120,11 +122,9 @@
 <% else %>
     <div class="container">
       <div class="panel panel-danger">
-        <div class="panel-heading"><p align="center"><font size="5">Nothing Found.</font></p></div>
+        <div class="panel-heading">
+          <p align="center"><%= link_to 'Nothing Found', url_for(:back), :class => 'btn btn-primary' %></p></div>
       </div>
     </div>
 <% end %>
-<% if posts.count == 0 %>
-    <%= link_to 'Back', url_for(:back), :class => 'btn btn-primary btn-block' %>
-    <% end %>
 </div>
