@@ -6,7 +6,7 @@
             <div class="panel-body">
               <div class="col-md-12">
                 <div class="col-md-1">
-                  <%= image_tag(post.image, height: 70) %>
+                  <%= image_tag(post.image, class:"img-responsive img-center") %>
                   <br>
                   <% if current_user && favorite_post?(post) %><br>
                       <%= link_to remove_from_favorite_post_path(post) do %>
