@@ -1,33 +1,23 @@
-
 <div class="container">
+  <table class="table table-bordered">
+    <thead>
+    <tr class="danger">
+      <th>Firstname</th>
+      <th>Lastname</th>
+    </tr>
+    </thead>
+    <tbody>
 <% @users.each do |user| %>
-      <div class="panel panel-primary">
-        <div class="panel-heading">Rating Users</div>
-        <div class="panel-body"><div class="table-responsive">
-          <table class="table">
-            <thead>
-            <tr>
-              <th>Name</th>
-              <th>Rating</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td><%= link_to user.name, user_path(user) %></td>
-              <td><%= user.rating %></td>
-            </tr>
-            </tbody>
-          </table></div>
-      </div>
+        <tr >
+          <td><%= link_to user.name, user_path(user) %></td>
+          <td><%=  %><% user.rating.times do |i| %>
+                <%= image_tag("rating.png", size: "20x20", alt: "Star") %>
+            <% end %></td>
+
+        </tr>
   <% end %>
-</div>
-
-
-
-
-
-
-
-
+    </tbody>
+  </table>
 
 <%= link_to 'Back', url_for(:back), :class => 'btn btn-primary btn-block' %>
+</div>
