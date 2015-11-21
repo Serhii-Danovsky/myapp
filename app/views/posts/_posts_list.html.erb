@@ -106,7 +106,7 @@
                 </div>
                 <div class="col-md-1">
                   <%= gravatar_for post.user %>
-                  Created by <strong><kbd><%= link_to(post.user.name, user_path(post.user)) %></kbd></strong>
+                  Created by <strong><kbd><%= link_to(post.user.name, semantic_path(post.user.id, post.user.name.to_param)) %></kbd></strong>
                 </div>
               </div>
             </div>

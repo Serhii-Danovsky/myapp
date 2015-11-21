@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   get 'favorite_posts' => 'posts#favorite'
   get 'sessions/logout'
   post 'sessions' => 'sessions#create'
+
+
+  get 'users/:id-:name' => 'users#show', as: 'semantic'
+  resources :users
   resources :posts do
     get 'popular', on: :collection
     get 'active', on: :collection
@@ -15,7 +19,7 @@ Rails.application.routes.draw do
   end
   get ':vote' => 'posts#votes', as: :votes
 
-  resources :users
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

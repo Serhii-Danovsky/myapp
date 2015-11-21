@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  def index
+    @users = User.all.sort_by(&:rating).reverse
+  end
+
   def show
     @user = User.find(params[:id])
     @user_posts = Post.where(user_id: @user.id)
