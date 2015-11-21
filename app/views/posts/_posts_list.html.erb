@@ -8,13 +8,13 @@
                 <div class="col-md-1">
                   <%= image_tag(post.image, height: 70) %>
                   <br>
-                  <% if current_user && favorite_post?(post) %>
+                  <% if current_user && favorite_post?(post) %><br>
                       <%= link_to remove_from_favorite_post_path(post) do %>
-                          <%= image_tag("remove-from-favorites.png", size: "20x20", alt: "Delete") %>
+                          <%= image_tag("remove-from-favorites.png", size: "40x40", alt: "Delete") %>
                       <% end %>
-                  <% elsif current_user && !favorite_post?(post) %>
+                  <% elsif current_user && !favorite_post?(post) %><br>
                       <%= link_to add_to_favorite_post_path(post) do %>
-                          <%= image_tag("add-to-favorites.png", size: "20x20", alt: "Delete") %>
+                          <%= image_tag("add-to-favorites.png", size: "40x40", alt: "Add") %>
                       <% end %>
                   <% end %>
                 </div>
