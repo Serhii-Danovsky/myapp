@@ -24,13 +24,15 @@
         <tr>
           <td align="right"><%= @post.created_at.strftime("Posted on %B %d, %A, %Y at %H:%M") %>
             | <%= @post.updated_at.strftime("Updated on %B %d, %A, %Y at %H:%M") %></td>
-
         </tr>
-
+        <tr class="image_show">
+          <td>
+            <%= image_tag(@post.image, height: 250) %>
+          </td>
+        </tr>
       </table>
     </div>
   </div>
-
 
   <div class="dislike ">
     <% if current_user && current_user != @post.user %>
