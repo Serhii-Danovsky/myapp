@@ -28,11 +28,7 @@
                         <b>
                           <i class="tags_show">
                             <% post.tags.split(%r{,+\s+|,+|\s+}).each do |tag| %>
-                                <% if params[:mode] %>
-                                    <%= link_to tag, posts_path(tag: tag, mode: params[:mode]) %>
-                                <% else %>
-                                    <%= link_to tag, posts_path(tag: tag) %>
-                                <% end %>
+                                <div class="btn btn-warning btn-xs"><%= link_to tag, posts_path(tag: tag) %></div>
                             <% end %>
                           </i>
                         </b>
