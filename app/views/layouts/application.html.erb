@@ -46,7 +46,7 @@
     </div>
     <ul class="nav navbar-nav navbar-right">
       <% if current_user %>
-          <li><a class="navbar-brand "> <strong><kbd>Hi, <%= current_user.name.capitalize %>!</kbd></strong></a></li>
+          <li><a class="navbar-brand " href="/users/<%= current_user.id %>-<%= current_user.name %>"> <strong><kbd>Hi, <%= current_user.name.capitalize %>!</kbd></strong></a></li>
           <li><a class="navbar-brand " href="/all_user_post"><strong><kbd>Show My Posts</kbd></strong></a></li>
           <li><a class="navbar-brand " href="/favorite_posts"><strong><kbd>Show My Favorite Posts</kbd></strong></a></li>
           <li>
