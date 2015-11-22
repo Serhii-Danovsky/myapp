@@ -11,7 +11,7 @@
         <tr>
           <td><%= gravatar_for user, {size: 50} %><br><strong><%= link_to(user.name, semantic_path(user.id, user.name.to_param)) %><br>
             Have
-            <spanp class="badge"><%= user.posts.count %></spanp>
+            <spanp class="badge"><%= user.posts.count %></spanp></strong>
             posts.
           </td>
           <td>
