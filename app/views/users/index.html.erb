@@ -7,25 +7,30 @@
     </tr>
     </thead>
     <tbody>
-<% @users.each do |user| %>
-        <tr >
-          <td><%=  gravatar_for user,  {size: 50} %><br><%= link_to user.name, user_path(user) %></td>
-          <td><%if user.rating>0 %>
+    <% @users.each do |user| %>
+        <tr>
+          <td><%= gravatar_for user, {size: 50} %><br><strong><%= link_to user.name, user_path(user) %></strong><br>
+            Have
+            <spanp class="badge"><%= user.posts.count %></spanp>
+            posts.
+          </td>
+          <td>
+            <% if user.rating>0 %>
                 <% user.rating.times do |i| %>
                     <%= image_tag("rating_up.png", size: "20x20", alt: "Star") %>
                 <% end %>
-                <%elsif user.rating==0  %>
+            <% elsif user.rating==0 %>
                 <%= image_tag("neutral.png", size: "50x50", alt: "Star") %>
-                <% else %>
+            <% else %>
                 <% user.rating.abs.times do |i| %>
                     <%= image_tag("rating_down.png", size: "20x20", alt: "Star") %>
                 <% end %>
             <% end %>  </td>
 
         </tr>
-  <% end %>
+    <% end %>
     </tbody>
   </table>
 
-<%= link_to 'Back', url_for(:back), :class => 'btn btn-primary btn-block' %>
+  <%= link_to 'Back', url_for(:back), :class => 'btn btn-primary btn-block' %>
 </div>

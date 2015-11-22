@@ -15,6 +15,9 @@
       <p>
         <span><strong><kbd><%= "#{@user.name} Favorite posts: #{@user.favorite_posts.count.to_s}" %></kbd></strong></span>
       </p>
+      <p>
+        <span><strong><kbd><%= "#{@user.name} Create post(s): #{@user.posts.count.to_s}" %></kbd></strong></span>
+      </p>
 
       <p><span><strong><kbd><%= "#{@user.name} rating:" %></kbd>
         <% if @user.rating>0 %>
