@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
       flash[:notice] = 'Your comment was create'
       redirect_to @post
     else
-      redirect_to :back, notice: 'ERROR'
+      redirect_to :back, notice: 'Your comment Can not be blank!'
     end
   end
 
