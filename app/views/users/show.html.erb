@@ -82,16 +82,18 @@
                     <tr>
                       <td align="left">
                         <%= link_to "#{post.comments.count} Comments", post_path(post, :anchor => :comments), title: "Add  comments", class: "btn btn-primary" %>
-                        <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                                    edit_post_path(post), :class => 'btn btn-xs btn-success' %>
+
                         <%= link_to t('.show', :default => t("helpers.links.show")),
                                     post_path(post), :class => 'btn btn-xs btn-warning' %>
-
+                        <% if current_user.id ==  post.user.id %>
+                        <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                                    edit_post_path(post), :class => 'btn btn-xs btn-success' %>
                         <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                                     post_path(post),
                                     :method => :delete,
                                     :data => {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},
                                     :class => 'btn btn-xs btn-danger' %>
+                            <% end %>
                       </td>
                     </tr>
                   </table>
