@@ -9,7 +9,7 @@
     <tbody>
     <% @users.each do |user| %>
         <tr>
-          <td><%= gravatar_for user, {size: 50} %><br><strong><%= link_to user.name, user_path(user) %></strong><br>
+          <td><%= gravatar_for user, {size: 50} %><br><strong><%= link_to(user.name, semantic_path(user.id, user.name.to_param)) %><br>
             Have
             <spanp class="badge"><%= user.posts.count %></spanp>
             posts.
