@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
   validates :body, length: {minimum: 140}
 
   scope :newest, -> { order(updated_at: :desc) }
-  scope :popular, ->(posts) { posts.sort_by(&:score_up).last(3).reverse  }
+  scope :popular, ->(posts) { posts.sort_by(&:score_up).last(3).reverse }
   scope :active, -> { order(:updated_at).last(3).reverse }
 
   def self.to_csv(options = {})
@@ -20,6 +20,18 @@ class Post < ActiveRecord::Base
         csv << post.attributes.values_at(*column_names)
       end
     end
+  end
+
+  def self.search_by_tag(tag)
+    if tag
+      where('lower(tags) LIKE ?', "%#{tag.downcase}%")
+    else
+      all.newest
+    end
+  end
+
+  def self.index_tags(params)
+    search_by_tag(params[:tag])
   end
 
   def score_up

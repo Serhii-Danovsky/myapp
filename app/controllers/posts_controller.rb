@@ -9,7 +9,7 @@ class PostsController < ApplicationController
       @posts = Post.where('body LIKE ? or title LIKE ? or  tags LIKE ? ',
                           "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%").newest
     else
-      @posts = Post.newest
+      @posts = Post.index_tags(params)
 
       respond_to do |format|
         format.html
@@ -163,10 +163,10 @@ class PostsController < ApplicationController
 
   def update_views
     cookies[:views] =
-      if cookies[:views].present?
-        cookies[:views].to_i + 1
-      else
-        1
-      end
+        if cookies[:views].present?
+          cookies[:views].to_i + 1
+        else
+          1
+        end
   end
 end
