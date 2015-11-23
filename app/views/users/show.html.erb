@@ -88,7 +88,7 @@
 
                         <%= link_to t('.show', :default => t("helpers.links.show")),
                                     post_path(post), :class => 'btn btn-xs btn-warning' %>
-                        <% if current_user.id ==  post.user.id %>
+                        <% if current_user && current_user.id ==  post.user.id %>
                         <%= link_to t('.edit', :default => t("helpers.links.edit")),
                                     edit_post_path(post), :class => 'btn btn-xs btn-success' %>
                         <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

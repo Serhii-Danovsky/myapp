@@ -82,7 +82,7 @@
           <th><%= comment.body %></th>
         </tr>
         <tr>
-          <td><%= comment.created_at.strftime("Comment add at %B %d, %A, %Y at %H:%M") %><br><% if current_user.id == comment.user.id  %>
+          <td><%= comment.created_at.strftime("Comment add at %B %d, %A, %Y at %H:%M") %><br><% if current_user && current_user.id == comment.user.id  %>
 
                 <%= link_to 'DELETE', post_comment_path(@post, comment), class: 'btn btn-danger btn-xs' , method: :delete %>
             <% end %></td>
