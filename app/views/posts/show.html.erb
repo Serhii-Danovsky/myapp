@@ -93,6 +93,21 @@
   <% end %>
 
   <% if current_user %>
+
+
+  <div class="container">
+  <p align="center">
+
+  <h1><strong><kbd>New comment</kbd></strong></h1>
+  <%= form_for([@post, @post.comments.build]) do |f| %>
+      <div class="row">
+        <div class="col-sm-1"><%= gravatar_for current_user %></div>
+        <div class="col-sm-11"><%= f.text_area :body, :cols => 10, :rows => 4, :class => 'form-control commentnew', :placeholder => "Add comment" %></div>
+      </div>
+      <br>
+      <%= f.submit nil, :class => 'btn btn-primary btn-block' %>
+  <% end %>
+</div>
       <%= link_to 'Add comment test', new_post_comment_path(@post), class: 'btn btn-success' %>
   <% else %>
       <p>
