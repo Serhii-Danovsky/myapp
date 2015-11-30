@@ -1,4 +1,4 @@
-<table class="table table-hover">
+<table class="table table-hover" id="comment_<%= comment.id %>">
   <tr>
     <th rowspan="2" width="10%"><%= gravatar_for comment.user %><br><%= comment.user.name %></th>
     <th><%= comment.body %></th>
@@ -6,7 +6,7 @@
   <tr>
     <td><%= comment.created_at.strftime("Comment add at %B %d, %A, %Y at %H:%M") %><br>
       <% if current_user && current_user.id == comment.user.id %>
-          <%= link_to 'DELETE', post_comment_path(@post, comment), class: 'btn btn-danger btn-xs', method: :delete %>
+          <%= link_to 'DELETE', post_comment_path(comment.commentable, comment), class: 'btn btn-danger btn-xs', method: :delete , remote: true %>
           <% end %><%= link_to "Reply", new_comment_comment_path(comment), class: 'btn btn-success btn-xs' %>
     </td>
   </tr>
