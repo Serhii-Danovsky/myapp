@@ -75,43 +75,26 @@
 <br>
 <div class="container-fluid">
   <h1><strong><kbd>Comments</kbd></strong></h1>
-  <% @comments.each do |comment| %>
-      <table class="table table-hover">
-        <tr>
-          <th rowspan="2" width="10%"><%= gravatar_for comment.user %><br><%= comment.user.name %></th>
-          <th><%= comment.body %></th>
-        </tr>
-        <tr>
-          <td><%= comment.created_at.strftime("Comment add at %B %d, %A, %Y at %H:%M") %><br><% if current_user && current_user.id == comment.user.id  %>
-
-                <%= link_to 'DELETE', post_comment_path(@post, comment), class: 'btn btn-danger btn-xs' , method: :delete %>
-            <% end %></td>
-        </tr>
-
-      </table>
-
-  <% end %>
-
+  <%= render @post.comments %>
   <% if current_user %>
+      <div class="container">
+        <p align="center">
 
-
-  <div class="container">
-  <p align="center">
-
-  <h1><strong><kbd>New comment</kbd></strong></h1>
-  <%= form_for([@post, @post.comments.build]) do |f| %>
-      <div class="row">
-        <div class="col-sm-1"><%= gravatar_for current_user %></div>
-        <div class="col-sm-11"><%= f.text_area :body, :cols => 10, :rows => 4, :class => 'form-control commentnew', :placeholder => "Add comment" %></div>
+        <h1><strong><kbd>New comment</kbd></strong></h1>
+        <%= form_for([@post, @post.comments.build]) do |f| %>
+            <div class="row">
+              <div class="col-sm-1"><%= gravatar_for current_user %></div>
+              <div class="col-sm-11"><%= f.text_area :body, :cols => 10, :rows => 4, :class => 'form-control commentnew', :placeholder => "Add comment" %></div>
+            </div>
+            <br>
+            <%= f.submit nil, :class => 'btn btn-primary btn-block' %>
+        <% end %>
       </div>
-      <br>
-      <%= f.submit nil, :class => 'btn btn-primary btn-block' %>
-  <% end %>
-</div>
-      <%= link_to 'Add comment test', new_post_comment_path(@post), class: 'btn btn-success' %>
   <% else %>
       <p>
+
       <h2>Only registered users can post comments</h2>
+
       <p>
   <% end %>
 </div>

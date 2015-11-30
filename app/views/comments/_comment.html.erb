@@ -1,0 +1,20 @@
+<table class="table table-hover">
+  <tr>
+    <th rowspan="2" width="10%"><%= gravatar_for comment.user %><br><%= comment.user.name %></th>
+    <th><%= comment.body %></th>
+  </tr>
+  <tr>
+    <td><%= comment.created_at.strftime("Comment add at %B %d, %A, %Y at %H:%M") %><br>
+      <% if current_user && current_user.id == comment.user.id %>
+
+          <%= link_to 'DELETE', post_comment_path(@post, comment), class: 'btn btn-danger btn-xs', method: :delete %>
+          <% end %><%= link_to "Reply", new_comment_comment_path(comment), class: 'btn btn-success btn-xs' %>
+    </td>
+  </tr>
+
+</table>
+
+<% margin = 60 %>
+<div style="margin-left:<%= margin %>px;"> <%= render :partial => comment.comments, :collection => comment.comments %>
+</div>
+<% margin += 60 %>

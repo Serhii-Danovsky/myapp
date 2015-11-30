@@ -6,22 +6,22 @@ class CommentsController < ApplicationController
   def index
   end
 
-  def new
-    @comment = Comment.new
-  end
-
   def create
-    @post = Post.find(params[:post_id])
-    @comment = @post.comments.new(comment_params)
+    @parent = Post.find(params[:post_id]) if params[:post_id]
+    @parent = Comment.find(params[:comment_id]) if params[:comment_id]
+    @comment = @parent.comments.new(comment_params)
     @comment.user_id = session[:user_id]
     @comment.save
-
     if @comment.save
-      flash[:notice] = 'Your comment was create'
-      redirect_to @post
+      redirect_to posts_path
     else
-      redirect_to :back, notice: 'Your comment Can not be blank!'
+      render 'new'
     end
+  end
+
+  def new
+    @parent_comment = Comment.find(params[:comment_id])
+    @comment = @parent_comment.comments.new
   end
 
   def destroy
