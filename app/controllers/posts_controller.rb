@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   after_action :update_views
   before_action :check_permissions, only: [:edit, :update, :destroy]
+  require 'will_paginate/array'
   # GET /posts
   # GET /posts.json
   def index
@@ -9,7 +10,7 @@ class PostsController < ApplicationController
       @posts = Post.where('body LIKE ? or title LIKE ? or  tags LIKE ? ',
                           "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%").newest
     else
-      @posts = Post.index_tags(params)
+      @posts = Post.paginate(:page => params[:page], :per_page => 5).index_tags(params)
 
       respond_to do |format|
         format.html

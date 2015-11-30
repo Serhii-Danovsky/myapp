@@ -1,5 +1,6 @@
 <% if posts.count > 0 %>
     <div class="container-fluid">
+      <div style="text-align: center;"> <%= will_paginate @collection, renderer: BootstrapPagination::Rails %></div>
       <% posts.each_with_index do |post, index| %>
           <div class="panel panel-primary">
             <div class="panel-heading"><strong><kbd><%= post.title %></kbd></strong></div>
@@ -121,6 +122,7 @@
             </div>
           </div>
       <% end %>
+      <div style="text-align: center;"> <%= will_paginate @collection, renderer: BootstrapPagination::Rails %></div>
 <% else %>
     <div class="container">
       <div class="panel panel-danger">
