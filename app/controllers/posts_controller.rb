@@ -62,7 +62,7 @@ class PostsController < ApplicationController
   def showalluserpost
     if current_user
       @user = User.find(current_user.id)
-      @posts = @user.posts
+      @posts = @user.posts.paginate(:page => params[:page], :per_page => 3)
     else
       redirect_to posts_path, notice: 'Login or register'
     end
@@ -121,11 +121,11 @@ class PostsController < ApplicationController
   end
 
   def popular
-    @posts = Post.popular(Post.all)
+    @posts = Post.popular(Post.all).paginate(:page => params[:page], :per_page => 3)
   end
 
   def active
-    @posts = Post.active
+    @posts = Post.active.paginate(:page => params[:page], :per_page => 3)
   end
 
   def add_to_favorite
@@ -147,7 +147,7 @@ class PostsController < ApplicationController
   end
 
   def favorite
-    @posts = current_user.favorite_posts.map(&:post)
+    @posts = current_user.favorite_posts.map(&:post).paginate(:page => params[:page], :per_page => 3)
   end
 
   private
