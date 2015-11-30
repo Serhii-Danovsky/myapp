@@ -1,12 +1,12 @@
 <div class="container" >
   <p align="center">
-    <%= form_for [@parent_comment, @comment]  do |f| %>
+    <%= form_for [@parent_comment, @comment] do |f| %>
       <div class="row">
         <div class="col-sm-1"><%= gravatar_for current_user %></div>
-        <div class="col-sm-11"><%= f.text_area :body, :cols => 10, :rows => 4, :class => 'form-control commentnew', :placeholder => "Add comment" %></div>
+        <div class="col-sm-11"><%= f.text_area :body, :cols => 10, :rows => 4, :class => 'form-control commentnew', :placeholder => "Add new reply" %></div>
       </div>
       <br>
-      <%= f.submit nil, :class => 'btn btn-primary btn-block' %>
+      <%= f.submit 'Add new reply', :class => 'btn btn-primary btn-block' %>
   <% end %>
   </p>
 </div>
