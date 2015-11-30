@@ -1,3 +1,5 @@
 $('#comment_<%= @comment.id %>').fadeOut( "slow", function() {
   $('#comment_<%= @comment.id %>').remove();
+  alert('You comment delete!')
+
 });

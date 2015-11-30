@@ -6,7 +6,7 @@
   <tr>
     <td><%= comment.created_at.strftime("Comment add at %B %d, %A, %Y at %H:%M") %><br>
       <% if current_user && current_user.id == comment.user.id %>
-          <%= link_to 'DELETE', post_comment_path(comment.commentable, comment), class: 'btn btn-danger btn-xs', method: :delete , remote: true %>
+          <%= link_to 'DELETE', post_comment_path(comment.commentable, comment), class: 'btn btn-danger btn-xs', method: :delete, data: {confirm: 'Are you sure?'}, remote: true %>
           <% end %><%= link_to "Reply", new_comment_comment_path(comment), class: 'btn btn-success btn-xs' %>
     </td>
   </tr>
