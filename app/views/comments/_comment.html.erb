@@ -1,17 +1,20 @@
 <table class="table table-hover" id="comment_<%= comment.id %>">
   <tr>
     <th rowspan="2" width="10%"><%= gravatar_for comment.user %><br><%= comment.user.name %></th>
-    <th><%= comment.body %></th>
+    <th>
+      <% if current_user && current_user.id == comment.user.id && (Time.now.to_i - comment.created_at.to_i) < 300 %><%= best_in_place comment, :body, :as => :textarea, :ok_button => 'Save', :cancel_button => 'Cancel' %><%= image_tag("edit.png", size: "16") %>
+      <% else %><%= comment.body %>
+      <% end %></th>
   </tr>
   <tr>
     <td><%= comment.created_at.strftime("Comment add at %B %d, %A, %Y at %H:%M") %><br>
       <% if current_user && current_user.id == comment.user.id %>
           <%= link_to 'DELETE', post_comment_path(comment.commentable, comment), class: 'btn btn-danger btn-xs', method: :delete, data: {confirm: 'Are you sure?'}, remote: true %>
-          <% end %><%= link_to "Reply", new_comment_comment_path(comment), class: 'btn btn-success btn-xs' %>
-    </td>
+          <% end %><%= link_to "Reply", new_comment_comment_path(comment), class: 'btn btn-success btn-xs' %>  Time edit
   </tr>
 </table>
 <% margin = 60 %>
 <div style="margin-left:<%= margin %>px;"> <%= render :partial => comment.comments, :collection => comment.comments %>
 </div>
 <% margin += 60 %>
+

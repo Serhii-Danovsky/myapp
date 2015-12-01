@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :check_comment_permission, only: :destroy
+  before_action :check_comment_permission, only: [:update, :destroy]
   before_action :set_comment, only: [:update, :destroy]
 
 
@@ -14,10 +14,15 @@ class CommentsController < ApplicationController
     @comment.user_id = session[:user_id]
     @comment.save
     respond_to do |format|
-      format.html { redirect_to  posts_url , notice: 'The reply comment was successfully add.' }
+      format.html { redirect_to posts_url, notice: 'The reply comment was successfully add.' }
       format.js
+      format.json
     end
-    end
+  end
+
+  def update
+    @comment.update(comment_params)
+  end
 
   def new
     @parent_comment = Comment.find(params[:comment_id])
