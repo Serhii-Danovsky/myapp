@@ -13,7 +13,8 @@
     <td><%= comment.created_at.strftime("Comment add at %B %d, %A, %Y at %H:%M") %><br>
       <% if current_user && current_user.id == comment.user.id %>
           <%= link_to 'DELETE', post_comment_path(comment.commentable, comment), class: 'btn btn-danger btn-xs', method: :delete, data: {confirm: 'Are you sure?'}, remote: true %>
-          <% end %><%= link_to "Reply", new_comment_comment_path(comment), class: 'btn btn-success btn-xs' %>
+          <% end %><% if current_user%><%= link_to "Reply", new_comment_comment_path(comment), class: 'btn btn-success btn-xs' %>
+          <% else %><%= link_to "Login or register to add Reply!", "#" , class: 'btn btn-success btn-xs' %><% end %>
       <% if current_user && current_user.id == comment.user.id && (Time.now.to_i - comment.created_at.to_i) < 300 %>
           <div id="getting-started_<%= comment.id %>"></div>
 
