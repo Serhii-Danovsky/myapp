@@ -84,19 +84,7 @@
       <%= render @post.comments %>
     </ol>
     <% if current_user %>
-        <div class="container">
-          <p align="center">
-
-          <h1><strong><kbd>New comment</kbd></strong></h1>
-          <%= form_for([@post, @post.comments.build], remote: true) do |f| %>
-              <div class="row">
-                <div class="col-sm-1"><%= gravatar_for current_user %></div>
-                <div class="col-sm-11"><%= f.text_area :body, :cols => 10, :rows => 4, :class => 'form-control commentnew', :placeholder => "Add comment" %></div>
-              </div>
-              <br>
-              <%= f.submit 'Add New comment', :class => 'btn btn-primary btn-block' %>
-          <% end %>
-        </div>
+        <%= render 'comments/form' %>
     <% else %>
         <p>
 
