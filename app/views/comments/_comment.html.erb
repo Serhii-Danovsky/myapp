@@ -2,16 +2,30 @@
   <tr>
     <th rowspan="2" width="10%"><%= gravatar_for comment.user %><br><%= comment.user.name %></th>
     <th>
-      <% if current_user && current_user.id == comment.user.id && (Time.now.to_i - comment.created_at.to_i) < 300 %><%= best_in_place comment, :body, :as => :textarea, :ok_button => 'Save', :cancel_button => 'Cancel' %><%= image_tag("edit.png", size: "16") %>
-      <% else %><%= comment.body %>
-      <% end %></th>
+      <% if current_user && current_user.id == comment.user.id && (Time.now.to_i - comment.created_at.to_i) < 300 %>
+          <div class="edit_<%= comment.id %>"><%= best_in_place comment, :body, :as => :textarea, :ok_button => 'Save', :cancel_button => 'Cancel' %><%= image_tag("edit.png", size: "16") %></div>
+          <% else %><%= comment.body %>
+      <% end %>
+      <div class="noedit_<%= comment.id %>" style="display: none;"><%= comment.body %></div>
+    </th>
   </tr>
   <tr>
     <td><%= comment.created_at.strftime("Comment add at %B %d, %A, %Y at %H:%M") %><br>
       <% if current_user && current_user.id == comment.user.id %>
           <%= link_to 'DELETE', post_comment_path(comment.commentable, comment), class: 'btn btn-danger btn-xs', method: :delete, data: {confirm: 'Are you sure?'}, remote: true %>
-          <% end %><%= link_to "Reply", new_comment_comment_path(comment), class: 'btn btn-success btn-xs' %>  Time edit
-  </tr>
+          <% end %><%= link_to "Reply", new_comment_comment_path(comment), class: 'btn btn-success btn-xs' %>
+      <% if current_user && current_user.id == comment.user.id && (Time.now.to_i - comment.created_at.to_i) < 300 %>
+          <div id="getting-started_<%= comment.id %>"></div>
+
+          <script type="text/javascript">
+              $('#getting-started_<%= comment.id %>').countdown('<%= comment.created_at + 5.minutes %>', function (event) {
+                  $(this).html(event.strftime('<br><div class="btn btn-warning btn-xs">You can edit it for %M:%S</div>')).delay(298000).fadeOut(2000);
+              });
+              $('.edit_<%= comment.id %>').delay(298000).fadeOut(2000);
+              $('.noedit_<%= comment.id %>').delay(300000).fadeIn();
+          </script>
+      <% end %>
+      </tr>
 </table>
 <% margin = 60 %>
 <div style="margin-left:<%= margin %>px;"> <%= render :partial => comment.comments, :collection => comment.comments %>
