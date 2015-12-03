@@ -13,8 +13,13 @@
     <td><%= comment.created_at.strftime("Comment add at %B %d, %A, %Y at %H:%M") %><br>
       <% if current_user && current_user.id == comment.user.id %>
           <%= link_to 'DELETE', post_comment_path(comment.commentable, comment), class: 'btn btn-danger btn-xs', method: :delete, data: {confirm: 'Are you sure?'}, remote: true %>
-          <% end %><% if current_user%><%= link_to "Reply", new_comment_comment_path(comment), class: 'btn btn-success btn-xs' %>
-          <% else %><%= link_to "Login or register to add Reply!", "#" , class: 'btn btn-success btn-xs' %><% end %>
+          <% end %>
+      <% if current_user %>
+          <button data-toggle="collapse" class="btn btn-success btn-xs" data-target="#add_reply_<%= comment.id %>">Add Reply</button>
+          <div id="add_reply_<%= comment.id %>" class="collapse">
+            <%= render partial: 'comments/new', locals: {parent_comment: comment} %>
+          </div>
+      <% end %>
       <% if current_user && current_user.id == comment.user.id && (Time.now.to_i - comment.created_at.to_i) < 300 %>
           <div id="getting-started_<%= comment.id %>"></div>
 
@@ -28,8 +33,10 @@
       <% end %>
       </tr>
 </table>
+
 <% margin = 60 %>
-<div style="margin-left:<%= margin %>px;"> <%= render :partial => comment.comments, :collection => comment.comments %>
+<div style="margin-left:<%= margin %>px;" id="reply_<%= comment.id %>"> <%= render :partial => comment.comments, :collection => comment.comments %>
 </div>
 <% margin += 60 %>
+
 

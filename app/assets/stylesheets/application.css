@@ -24,6 +24,8 @@
 .commentnew {
     margin: 0px -7.5px 0px 10px;
     height: 100px;
+.reply {
+    margin-left: 60px;
 }
 #comments-section {
     display: none;
