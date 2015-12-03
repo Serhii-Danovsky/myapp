@@ -72,16 +72,23 @@
 </div>
 <br>
 <div class="container-fluid">
+
+
+  <%= link_to '#', :class => 'btn btn-info btn-sm btn-block', id: "comments-link" do %>
+      <strong>Show Comments</strong>
+  <% end %>
+  <br>
+  <br>
   <section id="comments-section">
+    <ol id="comments">
+      <%= render @post.comments %>
+    </ol>
     <% if current_user %>
-        <ol id="comments">
-          <%= render @post.comments %>
-        </ol>
         <%= render 'comments/form' %>
     <% else %>
         <p>
 
-        <h2><%= link_to "Login or register to add Comments!", "#", class: 'btn btn-success ' %></h2>
+        <h2><%= link_to "Login or register to add Reply!", "#" , class: 'btn btn-success ' %></h2>
 
         <p/>
     <% end %>
