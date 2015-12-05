@@ -29,6 +29,7 @@
                     $(this).fadeOut(1000);
                     $('.edit_<%= comment.id %>').fadeOut(1000);
                     $('.noedit_<%= comment.id %>').fadeIn();
+                    $('.edit_<%= comment.id %>').remove();
                   });
               });
 
