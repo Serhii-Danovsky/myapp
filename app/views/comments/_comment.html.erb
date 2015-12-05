@@ -25,10 +25,13 @@
 
           <script type="text/javascript">
               $('#getting-started_<%= comment.id %>').countdown('<%= comment.created_at + 5.minutes %>', function (event) {
-                  $(this).html(event.strftime('<br><div class="btn btn-warning btn-xs">You can edit it for %M:%S</div>')).delay(298000).fadeOut(2000);
+                  $(this).html(event.strftime('<br><div class="btn btn-warning btn-xs">You can edit it for %M:%S</div>')).on('finish.countdown', function() {
+                    $(this).fadeOut(1000);
+                    $('.edit_<%= comment.id %>').fadeOut(1000);
+                    $('.noedit_<%= comment.id %>').fadeIn();
+                  });
               });
-              $('.edit_<%= comment.id %>').delay(298000).fadeOut(2000);
-              $('.noedit_<%= comment.id %>').delay(300000).fadeIn();
+
           </script>
       <% end %>
       </tr>
