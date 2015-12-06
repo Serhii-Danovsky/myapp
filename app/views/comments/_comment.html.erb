@@ -3,8 +3,7 @@
     <th rowspan="2" width="10%"><%= gravatar_for comment.user %><br><%= comment.user.name %></th>
     <th>
       <% if current_user && current_user.id == comment.user.id && (Time.now.to_i - comment.created_at.to_i) < 300 %>
-          <a href="#" data-toggle="tooltip" title="Click To Edit!">
-            <div class="edit_<%= comment.id %> btn btn-default btn-sm"><%= best_in_place comment, :body, :as => :textarea,  :ok_button => 'Save', :ok_button_class => "btn btn-success btn-xs", :cancel_button => 'Cancel' , :cancel_button_class => "btn btn-danger btn-xs" %><%= image_tag("edit.png", size: "16") %></div></a>
+            <div class="edit_<%= comment.id %> btn btn-default btn-sm"><%= best_in_place comment, :body, :as => :textarea,  :ok_button => 'Save', :ok_button_class => "btn btn-success btn-xs", :cancel_button => 'Cancel' , :cancel_button_class => "btn btn-danger btn-xs" %><a href="#" data-toggle="tooltip" title="Click on Text To Edit!"><%= image_tag("edit.png", size: "16") %></div></a>
           <% else %><%= comment.body %>
       <% end %>
       <div class="noedit_<%= comment.id %>" style="display: none;"><%= comment.body %></div>
