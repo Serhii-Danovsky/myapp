@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'favorite_posts' => 'posts#favorite'
   get 'sessions/logout'
   post 'sessions' => 'sessions#create'
-
+  post 'test/test_user' => 'users#test_user'
 
   get 'users/:id-:name' => 'users#show', as: 'semantic'
   resources :users
