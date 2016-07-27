@@ -5,9 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-15.times do
+1000000000.times do
   Post.create!(
-    title: Time.now.to_s + rand(999999).to_s,
+    title: Time.now.to_s + rand(9999999999).to_s + rand(9999999999).to_s + rand(999999999).to_s,
     body: 'asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdqwewqeqweqweqweqwewqeasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdqwewqeqweqweqweqwewqe',
     tags: 'asdasdq132123213213123'
   )

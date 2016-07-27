@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :categories
   get 'registration' => 'users#new' #, as: 'registration'
   get 'sessions/login'
   get 'all_user_post' => 'posts#showalluserpost'
