@@ -14,9 +14,7 @@ class ApplicationController < ActionController::Base
     @resource = User.new({:email => email_json, :password => "111111", :password_confirmation => "111111"  , :name => name_json})
 
     if @resource.save
-      render json: {
-          confirm: 'сохранен',
-      }, status: :ok
+      render json: @resource , status: :ok
     else
       render json: @resource.errors, status: :unprocessable_entity
     end
