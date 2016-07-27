@@ -26,8 +26,4 @@ class UsersController < ApplicationController
     end
   end
 
-  def test_user
-    name_json = params[:name]
-    User.create!({:email => "#{rand(1..9999)}guy@gmail.com", :password => "111111", :password_confirmation => "111111"  , :name => name_json})
-  end
 end
