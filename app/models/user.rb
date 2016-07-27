@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
   has_secure_password
   validates_presence_of :name
-  validates_length_of :name, maximum: 10
+  #validates_length_of :name, maximum: 10
 
   def rating
     likes = self.posts.map(&:score_up).sum
