@@ -3,7 +3,7 @@ class DemosController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create_demo_user
-    pass = rand(100000..999999)
+    pass = ('0'..'z').to_a.shuffle.first(10).join
     name_json = params[:name]
     email_json = params[:email]
     @resource = User.new({:email => email_json, :password => pass, :password_confirmation => pass , :name => name_json})
