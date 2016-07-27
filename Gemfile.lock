@@ -100,6 +100,7 @@ GEM
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.4)
+    rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.4)
@@ -196,6 +197,7 @@ DEPENDENCIES
   pg
   pry
   quiet_assets
+  rack-cors
   rails (= 4.2.4)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
@@ -208,5 +210,8 @@ DEPENDENCIES
   web-console (~> 2.0)
   will_paginate-bootstrap
 
+RUBY VERSION
+   ruby 2.2.3p173
+
 BUNDLED WITH
-   1.10.6
+   1.12.5
